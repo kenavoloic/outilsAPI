@@ -1,0 +1,58 @@
+{
+  "name": "outilsAPI",
+  "version": "1.0.0",
+  "description": "Données pour orchestreCrud. Première mouture React.js",
+  "main": "./src/index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production",
+    "deux": "webpack-dev-server --config ./webpack.config.js --mode development"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenavoloic/outilsAPI.git"
+  },
+  "author": {
+    "name": "Kenavo Loïc",
+    "email": "kenavoloic@gmail.com",
+    "url": "https://github.com/kenavoloic/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kenavoloic/outilsAPI/issues"
+  },
+  "homepage": "https://github.com/kenavoloic/outilsAPI#readme",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "date-fns": "^2.9.0",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.0",
+    "react": "^16.12.0",
+    "react-bootstrap": "^1.0.0-beta.16",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.1",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^1.1.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}

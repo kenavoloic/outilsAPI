@@ -1,0 +1,319 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+:root {
+    --bodyCouleurFond: #888888;
+    --couleurNavFond: #466cdb;
+}
+
+*, *::before, *::after {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html {
+    font-size:100%;
+}
+
+body {
+    margin:0.625em;
+    background:var(--bodyCouleurFond);
+}
+
+#racine {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+article.truc {
+    /*background-color:#feffff;*/
+    border:3px solid #B07654;
+    border-radius:6px;
+
+    padding:10px;
+    margin:10px;
+}
+
+.couleurHomme {
+    /*background-color:#888844;*/
+    background-color:#afbefa;
+}
+
+.couleurFemme {
+    /*background-color:#448888;*/
+    background-color:#faafbe;
+}
+
+ul.truc {
+    list-style:none;
+}
+
+ul.truc li {
+    font-size:1.25em;
+    background-color:#cccccc;
+    padding:10px;
+    margin:10px;
+}
+
+dl {
+    padding:10px;
+    background-color:#aaaaaa;
+}
+dd {
+    margin:10px;
+}
+
+.grille {
+    display:grid;
+    width: 100vw;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 0.5em;
+    padding:0;
+    margin:0;
+    /*background-color:#cccccc;*/
+    border-radius:5px;
+}
+
+
+article.musicien {
+    /*display:grid;*/
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    background-color:#ffffff;
+    border:2px solid #888888;
+    border-radius:5px;
+}
+
+.musicien > img {
+    display:block;
+    width:100%;
+    height:auto;
+    padding:0;
+    margin:0;
+    box-shadow: -1px 0px 0px rgba(0,0,0,0.2);
+    flex:1;
+}
+
+.musicien > h1 {
+    font-size:1em;
+    padding:0;
+    padding:1.5em, 0;
+    /*margin: 1em 0 ;*/
+    color: #ffffff;
+    text-align:center;    
+    line-height:2;
+/*    flex:2;*/
+    /*
+    height:10%;    
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+*/
+}
+
+.musicien  p {
+    text-align:left;
+    margin-left:10px;
+    flex:1;
+    line-height:2;
+}
+
+.musicien  ul {
+    list-style:none;
+    margin: 0 0 1em;
+}
+
+.musicien li {
+    font-family:sans-serif;
+    font-size:0.9em;
+    padding:10px;
+    margin:10px;
+    background-color:#dddddd;
+    border-radius:3px;
+    border:2px solid #b0b0b0;
+    text-align:right;
+    position:relative;
+}
+
+.musicien li.age::before{
+    content: "Age";
+    position:absolute;
+    top:0.75em;
+    left:0.5em;
+    text-align:left;
+    font-size:inherit;
+    font-family:inherit;
+    color:#505050;
+}
+
+.musicien li.anciennete::before{
+    content: "Anc.";
+    position:absolute;
+    top:0.75em;
+    left:0.5em;
+    text-align:left;
+    font-size:inherit;
+    font-family:inherit;
+    color:#505050;
+}
+
+.musicien li.telephone::before{
+    content: "Tél.";
+    position:absolute;
+    top:0.75em;
+    left:0.5em;
+    text-align:left;
+    font-size:inherit;
+    font-family:inherit;
+    color:#505050;
+}
+
+.musicien li.portable::before{
+    content: "Port.";
+    position:absolute;
+    top:0.75em;
+    left:0.5em;
+    text-align:left;
+    font-size:inherit;
+    font-family:inherit;
+    color:#505050;
+}
+
+.musicien li.ville::before{
+    content: "Ville";
+    position:absolute;
+    top:0.75em;
+    left:0.5em;
+    text-align:left;
+    font-size:inherit;
+    font-family:inherit;
+    color:#505050;
+}
+
+.musicien li.nationalite::before{
+    content: "Nat.";
+    position:absolute;
+    top:0.75em;
+    left:0.5em;
+    text-align:left;
+    font-size:inherit;
+    font-family:inherit;
+    color:#505050;
+}
+
+
+.musicien li.courriel {
+    font-size:0.8em;
+    text-align:left;
+    overflow:hidden;
+}
+
+.musicien span {
+    display:inline-block;
+    font-family:sans-serif;
+    font-size:0.9em;
+    color:#505050;
+    text-align:left;
+}
+
+article.musicien2 {
+    display:grid;
+    grid-template-rows: 1fr 4fr 4fr;
+    /*
+    grid-template-area:
+    "nomPrenom"
+    "photo"
+    "age"
+    "anciennete"
+    "telephone"
+    "portable"
+    "courriel"
+    "ville"
+    "nationalite";
+    */
+    background-color:#ffffff;
+    border:2px solid #888888;
+    border-radius:5px;
+}
+
+article.musicien2 h1 {
+    grid-row:1;
+}
+article.musicien2 img {
+grid-row:2;
+}
+article.musicien2 ul {
+    grid-row:3;
+}
+
+.entete {
+    font-family:sans-serif;
+    font-size:1em;
+    color:#202020;
+    background-color:#fefefe;
+}
+
+nav {
+  background-color:var(--couleurNavFond);
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  padding: 0 5px;
+}
+/*
+li::before {
+    content: "@";
+    font-size:1.25em;
+}
+*/
