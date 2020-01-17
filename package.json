@@ -34,12 +34,8 @@
   },
   "homepage": "https://github.com/kenavoloic/outilsAPI#readme",
   "dependencies": {
-    "bootstrap": "^4.4.1",
     "date-fns": "^2.9.0",
-    "jquery": "^3.4.1",
-    "popper.js": "^1.16.0",
     "react": "^16.12.0",
-    "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0"
   },
   "devDependencies": {

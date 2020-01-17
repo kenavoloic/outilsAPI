@@ -1,9 +1,7 @@
 import React from 'react';
 
-//import {Card, Image, ListGroup} from 'react-bootstrap';
-
-import { add as dfAdd, format as dfFormat, formatDistance as dfFormatDistance, formatDistanceStrict as dfFormatDistanceStrict, formatDistanceToNow as dfFormatDistanceToNow} from 'date-fns';
-import { fr as dfFr} from 'date-fns/locale';
+import { add as dateFunctionsAdd, format as dateFunctionsFormat, formatDistance as dateFunctionsFormatDistance, formatDistanceStrict as dateFunctionsFormatDistanceStrict, formatDistanceToNow as dateFunctionsFormatDistanceToNow} from 'date-fns';
+import { fr as dateFunctionsFr} from 'date-fns/locale';
 
 
 const Musicien = props => {
@@ -15,13 +13,13 @@ const Musicien = props => {
     };
 
     const depuisQuand = dateEmbauche => {
-        let depuis = dfFormatDistanceStrict(dateEmbauche, new Date(), {unit:'year', locale:dfFr});
-        return (depuis === "0 ans" ) ? " Moins d'un an" : depuis;
+        let depuis = dateFunctionsFormatDistanceStrict(dateEmbauche, new Date(), {unit:'year', locale:dateFunctionsFr});
+        return (depuis === "0 ans" ) ? " Moins d’un an" : depuis;
     };
 
-    const jourMoisAnnee = date => dfFormat(new Date(date), "d MMMM yyyy", {locale: dfFr});
+    const jourMoisAnnee = date => dateFunctionsFormat(new Date(date), "d MMMM yyyy", {locale: dateFunctionsFr});
 
-    const dateMajorite = objetDate => dfAdd(objetDate, {years:18});
+    const dateMajorite = objetDate => dateFunctionsAdd(objetDate, {years:18});
 
     const formatNombre = (nombre, nbZero=2) => String(nombre).padStart(nbZero,'0');
 

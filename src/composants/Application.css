@@ -54,6 +54,30 @@ table {
 :root {
     --bodyCouleurFond: #888888;
     --couleurNavFond: #466cdb;
+    --bordureRayon:5px;
+
+    --gizon:#afbefa;
+    --emakume:#faafbe;
+
+    --articleCouleurFond:#ffffff;
+    --articleCouleurBordure:#888888;
+    --articleBordureCouleur:#888888;
+    --articleBordureLargeur: 2px;
+    --articleBordureRayon:var(--bordureRayon);
+    --articleH1Couleur:#ffffff;
+    --articleH1LineHeight:2;
+    --articleLiBeforeCouleur:#505050;
+    --articleLiFontFamily: sans-serif;
+    --articleLiFontSize: 0.9em;
+    --articleLiCouleur: inherit;
+    --articleLiFond:#dddddd;
+    --articleLiBordureRayon:3px;
+    --articleLiBordureCouleur: #b0b0b0;
+    --articleLiBordureLargeur: 2px;
+
+    --enteteFond: var(--articleLiFond);
+    --footerFond: var(--articleLiFond);
+    --footerCouleur: var(--articleLiBeforeCouleur);
 }
 
 *, *::before, *::after {
@@ -76,64 +100,34 @@ body {
     justify-content:center;
     align-items:center;
 }
-article.truc {
-    /*background-color:#feffff;*/
-    border:3px solid #B07654;
-    border-radius:6px;
-
-    padding:10px;
-    margin:10px;
-}
 
 .couleurHomme {
-    /*background-color:#888844;*/
-    background-color:#afbefa;
+    background-color: var(--gizon);
 }
 
 .couleurFemme {
-    /*background-color:#448888;*/
-    background-color:#faafbe;
+    background-color: var(--emakume);
 }
 
-ul.truc {
-    list-style:none;
-}
-
-ul.truc li {
-    font-size:1.25em;
-    background-color:#cccccc;
-    padding:10px;
-    margin:10px;
-}
-
-dl {
-    padding:10px;
-    background-color:#aaaaaa;
-}
-dd {
-    margin:10px;
-}
-
-.grille {
+.grilleMusiciens {
     display:grid;
     width: 100vw;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 0.5em;
     padding:0;
     margin:0;
-    /*background-color:#cccccc;*/
-    border-radius:5px;
+    border-radius:var(--bordureRayon);
+    margin-top:3.0em;
 }
 
 
 article.musicien {
-    /*display:grid;*/
     display:flex;
     flex-direction:column;
     justify-content:space-between;
-    background-color:#ffffff;
-    border:2px solid #888888;
-    border-radius:5px;
+    background-color:var(--articleCouleurFond);
+    border:var(--articleBordureLargeur) solid var(--articleBordureCouleur);    
+    border-radius:8px;
 }
 
 .musicien > img {
@@ -150,16 +144,9 @@ article.musicien {
     font-size:1em;
     padding:0;
     padding:1.5em, 0;
-    /*margin: 1em 0 ;*/
-    color: #ffffff;
+    color: var(--articleH1Couleur);
     text-align:center;    
-    line-height:2;
-/*    flex:2;*/
-    /*
-    height:10%;    
-    border-top-left-radius:5px;
-    border-top-right-radius:5px;
-*/
+    line-height:var(--articleH1LineHeight);
 }
 
 .musicien  p {
@@ -175,83 +162,16 @@ article.musicien {
 }
 
 .musicien li {
-    font-family:sans-serif;
-    font-size:0.9em;
+    font-family:var(--articleLiFontFamily);
+    font-size:var(--articleLiFontSize);
     padding:10px;
     margin:10px;
-    background-color:#dddddd;
-    border-radius:3px;
-    border:2px solid #b0b0b0;
+    background-color:var(--articleLiFond);
+    border-radius:var(--articleLiBordureRayon);
+    border:var(--articleLiBordureLargeur) solid var(--articleLiBordureCouleur);
     text-align:right;
     position:relative;
 }
-
-.musicien li.age::before{
-    content: "Age";
-    position:absolute;
-    top:0.75em;
-    left:0.5em;
-    text-align:left;
-    font-size:inherit;
-    font-family:inherit;
-    color:#505050;
-}
-
-.musicien li.anciennete::before{
-    content: "Anc.";
-    position:absolute;
-    top:0.75em;
-    left:0.5em;
-    text-align:left;
-    font-size:inherit;
-    font-family:inherit;
-    color:#505050;
-}
-
-.musicien li.telephone::before{
-    content: "Tél.";
-    position:absolute;
-    top:0.75em;
-    left:0.5em;
-    text-align:left;
-    font-size:inherit;
-    font-family:inherit;
-    color:#505050;
-}
-
-.musicien li.portable::before{
-    content: "Port.";
-    position:absolute;
-    top:0.75em;
-    left:0.5em;
-    text-align:left;
-    font-size:inherit;
-    font-family:inherit;
-    color:#505050;
-}
-
-.musicien li.ville::before{
-    content: "Ville";
-    position:absolute;
-    top:0.75em;
-    left:0.5em;
-    text-align:left;
-    font-size:inherit;
-    font-family:inherit;
-    color:#505050;
-}
-
-.musicien li.nationalite::before{
-    content: "Nat.";
-    position:absolute;
-    top:0.75em;
-    left:0.5em;
-    text-align:left;
-    font-size:inherit;
-    font-family:inherit;
-    color:#505050;
-}
-
 
 .musicien li.courriel {
     font-size:0.8em;
@@ -259,49 +179,70 @@ article.musicien {
     overflow:hidden;
 }
 
-.musicien span {
-    display:inline-block;
-    font-family:sans-serif;
-    font-size:0.9em;
-    color:#505050;
+.musicien li.age::before,
+.musicien li.anciennete::before,
+.musicien li.telephone::before,
+.musicien li.portable::before,
+.musicien li.ville::before,
+.musicien li.nationalite::before,
+.musicien li.courriel::before {
+    position:absolute;
+    top:0.75em;
+    left:0.5em;
     text-align:left;
+    font-size:inherit;
+    font-family:inherit;
+    color:var(--articleLiBeforeCouleur);
 }
 
-article.musicien2 {
-    display:grid;
-    grid-template-rows: 1fr 4fr 4fr;
-    /*
-    grid-template-area:
-    "nomPrenom"
-    "photo"
-    "age"
-    "anciennete"
-    "telephone"
-    "portable"
-    "courriel"
-    "ville"
-    "nationalite";
-    */
-    background-color:#ffffff;
-    border:2px solid #888888;
-    border-radius:5px;
+.musicien li.age::before{
+    content: "Age";
 }
 
-article.musicien2 h1 {
-    grid-row:1;
-}
-article.musicien2 img {
-grid-row:2;
-}
-article.musicien2 ul {
-    grid-row:3;
+.musicien li.anciennete::before{
+    content: "Anc.";
 }
 
-.entete {
+.musicien li.telephone::before{
+    content: "Tél.";
+}
+
+.musicien li.portable::before{
+    content: "Port.";
+}
+
+.musicien li.ville::before{
+    content: "Ville";
+}
+
+.musicien li.nationalite::before{
+    content: "Nat.";
+}
+
+header.entete {
     font-family:sans-serif;
     font-size:1em;
     color:#202020;
-    background-color:#fefefe;
+    background-color:var(--enteteFond);
+    z-index:1;
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    padding:0.8em 0;
+    line-height:1.2;
+}
+
+footer.basDePage {
+    margin-top:1.5em;
+    background-color:var(--enteteFond);
+    width:100%;
+}
+
+footer.basDePage p {
+    font-family:serif;
+    font-size: 0.85em;
+    color: var(--footerCouleur);
 }
 
 nav {
@@ -311,9 +252,4 @@ nav {
   align-items:center;
   padding: 0 5px;
 }
-/*
-li::before {
-    content: "@";
-    font-size:1.25em;
-}
-*/
+

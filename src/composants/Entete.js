@@ -3,8 +3,12 @@ import React from 'react';
 const Entete = () => {
     return(
         <header className="entete">
-        <button>Sauver</button>
-        <button>À propos</button>        
+        <form>
+        <label>Nombre
+        <input type="text" />
+        </label>
+        <input type="submit" value="Envoyer" />
+        </form>
         </header>
     );
 };
