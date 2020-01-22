@@ -75,6 +75,8 @@ table {
     --articleLiBordureCouleur: #b0b0b0;
     --articleLiBordureLargeur: 2px;
 
+    --enteteFormulaireFond:#befaaf;
+
     --enteteFond: var(--articleLiFond);
     --footerFond: var(--articleLiFond);
     --footerCouleur: var(--articleLiBeforeCouleur);
@@ -231,6 +233,12 @@ header.entete {
     left:0;
     padding:0.8em 0;
     line-height:1.2;
+}
+
+form.enteteFormulaire {
+    display:flex;
+    background-color:var(--enteteFormulaireFond);
+
 }
 
 footer.basDePage {

@@ -68,7 +68,6 @@ class Application extends Component {
                 }
                 )}
                 </div>
-                <BasDePage />
                 </React.Fragment>
 
             );
