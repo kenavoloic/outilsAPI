@@ -1,16 +1,17 @@
 # outilsAPI
 
-## Version React :
+## Version React
 
-À terme, mêmes fonctions que la version script.
+Création d’une liste de musiciens selon les besoins du projet *ORCHESTRE* et notamment récupération des données au format JSON.
 
-## outilRandomuserMusicien : version script
+## Mode d’emploi
 
-Création d’une liste de musiciens selon les besoins du projet *ORCHESTRE* et notamment formatage des données au format sql.
+Choix du type d’instrumentiste puis après récupération des données, sauvegarde du fichier JSON.
 
-Le script doit être lancé au moyen de **nodejs** et la sortie dirigée dans un fichier.
+Le format du nom du fichier est [abbréviation]_[seed]_[nombre].json
 
-### Exemple
 
-` nodejs outilRandomuserMusicien.js > listeMusiciens.sql `
+
+
+
 
