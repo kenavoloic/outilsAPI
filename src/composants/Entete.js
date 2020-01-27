@@ -1,34 +1,52 @@
 import React from 'react';
 import Formulaire from './Formulaire';
 
-const Entete = () => {
-/*
-    let liste = {
-        gender: {
-            value: '',
-            placeholder: 'Gender ?',
-            valid:false,
-            touche: false,
-            validationRules: { isRequired: true},
-            options: [
-                {value: 'male', displayValue: 'Male'},
-                {value: 'female', displayValue: 'Female'}
-            ]
-        }
-    };
-*/
+class Entete extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            posteApourvoir: 'chef',
+            nombrePostulants: 12,
+            seed: 'louisonBobet'
+        };
+        this.modificationSeed = this.modificationSeed.bind(this);
+        this.fonctionInstrumentale = this.fonctionInstrumentale.bind(this);
+        this.nombrePostes = this.nombrePostes.bind(this);
+        this.requete = this.requete.bind(this);
 
-    const changeHandler = e => {
-        let name = e.target.name;
-        let value = e.targe.value;
-        console.log(name, value);
-    };
+    }
 
-    return(
-        <header className="entete">
-        <Formulaire />
-        </header>
-    );
-};
+    modificationSeed(e){
+        this.setState({seed: e.target.value});
+    }
+
+
+    fonctionInstrumentale(e){
+        this.setState({posteApourvoir: e.target.value});
+    }
+
+    nombrePostes(e){
+        this.setState({nombrePostulants: e.target.value});
+    }
+
+    requete(e){
+        e.preventDefault();
+        console.log(this.state);
+    }
+
+    componentDidUpdate(){
+        console.log("Mise à jour");
+    }
+
+
+    render(){
+        return(
+            <header className="entete">
+            <Formulaire nomClasse="formulaireEntete" />
+            </header>
+        );
+
+    }
+}
 
 export default Entete;

@@ -75,6 +75,7 @@ table {
     --articleLiBordureCouleur: #b0b0b0;
     --articleLiBordureLargeur: 2px;
 
+    --barreFond: #bfbfbf;
     --enteteFormulaireFond:#befaaf;
 
     --enteteFond: var(--articleLiFond);
@@ -112,6 +113,32 @@ body {
 }
 
 .grilleMusiciens {
+    display:flex;
+    align-items:center;
+    justify-items:center;
+}
+
+.barre {
+    width:100vw;
+    background-color: var(--barreFond);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 15px;
+}
+
+main.panneau {
+    display:grid;
+    width: 100%; /*100vw;*/
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 0.5em;
+    padding:0;
+    margin:0;
+    border-radius:var(--bordureRayon);
+    margin-top:3.0em;
+}
+
+.trombinoscope {
     display:grid;
     width: 100vw;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -175,7 +202,7 @@ article.musicien {
     position:relative;
 }
 
-.musicien li.courriel {
+.musicien li.courriel, .musicien li.villeSimple {
     font-size:0.8em;
     text-align:left;
     overflow:hidden;
@@ -231,14 +258,58 @@ header.entete {
     position:fixed;
     top:0;
     left:0;
-    padding:0.8em 0;
-    line-height:1.2;
+    line-height:2;
 }
+
+input[type="text"],
+input[type="number"]{
+    font-size:inherit;
+    border:1px solid #223366;
+    border-radius:4px;
+    padding:3px;
+    text-align:center;
+}
+
+button {
+    font-size:100%;
+    text-align:center;
+    border:1px solid #223366;
+    border-radius:4px;
+    padding:3px;
+
+}
+
+label {
+    font-size:inherit;
+    text-align:center;
+    border:1px solid #223366;
+    border-radius:4px;
+    padding:3px;
+}
+
 
 form.enteteFormulaire {
     display:flex;
-    background-color:var(--enteteFormulaireFond);
+    justify-content:space-between;
+    font-size:100%;
+    /*background-color:#44dd88;*/
+}
+/*
+form.enteteFormulaire  label{
+}
 
+form.enteteFormulaire  input[type="text"]{
+    padding:6px;
+    text-align:center;
+}
+*/
+form.enteteFormulaire > button.requete {
+    background-color:#ddbb44;
+}
+
+form.enteteFormulaire > button.requete:disabled {
+    background-color:#44bbdd;
+    /*align-items:flex-end;*/
 }
 
 footer.basDePage {
@@ -261,3 +332,89 @@ nav {
   padding: 0 5px;
 }
 
+/*
+palette
+#031926 468189 77aca2 9dbebb f4e9cd
+*/
+
+article.cadreSelecteur {
+    display:flex;
+    flex-direction: column;
+    position:absolute;
+}
+
+details.selecteur {
+    font-size:80%;
+    display: inline-block;
+    border:1px solid #c5c5c5;
+    border-radius: 3px;
+    position:relative;
+    color:#454545;
+    background-color:#ffffff;
+    width:14em;
+    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.25);
+}
+
+details.selecteur > summary {
+    cursor:pointer;
+    padding:6px 12px;
+    border:1px solid #252525;
+    list-style:none;
+}
+/*
+details.selecteur[open] summary {
+    animation: sweep .5s ease-in-out;
+}
+
+@keyframes sweep {
+    0% {opacity: 0; margin-left: -10px}
+    100% {opacity: 1; margin-left: 0px}
+}
+*/
+details.detailsGroupe {
+    display: inline-block;
+    border:1px solid #eeeeee;
+    background-color:#feffff;
+    width:9.85em;
+    margin-right:10px;
+}
+
+details.detailsGroupe  summary {
+    cursor:default;
+    padding: 5px 0px 5px 5px;
+    border-radius:4px;
+    list-style:none;
+}
+/*
+details.detailsGroupe[open] summary ~ *{
+    animation: sweepDetailsGroupe .125s ease-in-out;
+}
+
+@keyframes sweepDetailsGroupe {
+    0% {opacity: 0; margin-left: -10px}
+    100% {opacity: 1; margin-left: 0px}
+}
+*/
+details.detailsGroupe  ul {
+    display:inline-table;
+    list-style:none;
+    border: 1px solid #ededed;
+    border-radius: 0 0 3px 3px;
+    background: #f4f4f4;
+    width:100%;
+}
+
+details.detailsGroupe  ul li {
+    display:block;
+    font-size:0.9em;
+    padding-top:5px;
+    padding-left:12px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+details.detailsGroupe  ul li:hover {
+    color:#44bbbb;
+    background-color:#fefefe;
+    cursor:pointer;
+}

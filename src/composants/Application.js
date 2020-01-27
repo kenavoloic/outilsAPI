@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './Application.css';
+
+import Formulaire from './Formulaire';
 import Musicien from './Musicien';
 import Entete from './Entete';
 import BasDePage from './BasDePage';
+import listeOrchestrale from './listeOrchestrale';
+import Trombinoscope from './Trombinoscope';
 
 class Application extends Component {
 
@@ -11,75 +15,56 @@ class Application extends Component {
         super(props);
 
         this.state = {
-            nombre: 30,
             liste: [],
-            telechargementEnCours:false,
-        }
-
-    }
-
-    getLien = (nombre, seed="randomuser") => {
-        const lien = 'https://randomuser.me/api/';
-        seed = `?seed=${seed};`
-        const nationalites = 'nat=au,br,ca,ch,de,dk,es,fi,fr,gb,ie,no,nl,nz,us';
-        const champs = 'exc=login,registered';
-        //const champs= "inc=gender,name,dob,email,nat,location,id,picture";
-        const resultats = `results=${nombre}`;
-        let retour = `${lien}${seed}&${resultats}&${champs}&${nationalites}`;
-        return retour;
-    };
-
-    componentDidMount = () => {
-        this.setState({telechargementEnCours:true});
-        fetch(this.getLien(this.state.nombre))
-            .then(r => r.json())
-            .then(r => {
-                this.setState({
-                    telechargementEnCours: true,
-                    liste: r.results
-                })
-            },
-                (erreur) => {
-                    this.setState({
-                        telechargementEnCours: true,
-                        erreur
-                    });
-                }
-            )
-    }
-    
-    suffixeAleatoire = () => new Date().getTime()+"_"+(Math.random()+1).toString(36).substring(2,12);
-
-    render() {
-        const {erreur, telechargementEnCours, liste } = this.state;
-
-        if(erreur){
-            return <div>Erreur: {erreur.message}</div>;
-        } else if (!telechargementEnCours) {
-            return <div>Téléchargement en cours…</div>;
-        } else {                
-            return (
-                <React.Fragment>
-                <Entete />
-                <div className="grilleMusiciens">
-                {liste.map(x => {
-                    return <Musicien key={'k_'+this.suffixeAleatoire()} 
-                    genre={x.gender} titre={x.title} nom={x.name.last} prenom={x.name.first} dob={x.dob.date.slice(0,10)} nationalite={x.nat} courriel={x.email} portable={x.cell} telephone={x.phone} ville={x.location.city} pays={x.location.country} identifiant={x.id.value} portrait={x.picture.large} />
-                }
-                )}
-                </div>
-                </React.Fragment>
-
-            );
-            
+            listeAnterieure: [],
+            abbreviation: '',
+            libelle: '',
+            musiciens: []
+        
         }
     }
 
-    //formatNombre = (nombre, nbZero=3) => String(nombre).padStart(nbZero,'0');
+    componentDidMount = () => {}
 
-    componentDidCatch = (erreur, info) =>{
-        console.log(erreur.message);
+    componentDidUpdate = () => {}
+
+    componentDidCatch = (erreur, info) => console.log(erreur.message);
+
+    communicationFormulaireApplication = donnees => {
+        if(donnees){
+            this.setState({liste: donnees});
+        }
+        //console.log(this.state.liste);
     }
+
+
+    listeMusiciens = data => {
+        if(data){
+            this.setState({musiciens: data});
+        }
+    }
+
+    sauvegardeJson = () => {
+        let json = JSON.stringify(this.state.liste);
+        let blob = new Blob([json], {type: "text/plain"});
+        let url = URL.createObjectURL(blob);
+        let lien = document.createElement('a');
+        lien.download = 'filename.json';
+        lien.href = url;
+        lien.click();
+    }
+  
+    render(){
+        return (
+            <React.Fragment>
+            <header className="entete">
+            <Formulaire nomClasse="enteteFormulaire" canalEnfantParent={this.communicationFormulaireApplication}/>
+            </header>
+            {this.state.liste ? <Trombinoscope data={this.state.liste} nomClasse="trombinoscope" listeMusiciens={this.listeMusiciens} /> : null} 
+            </React.Fragment>
+        );
+    }
+
 }
 
 export default Application;

@@ -1,42 +1,71 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './Application.css';
 
 class Choix extends React.Component {
     constructor(props){
         super(props);
-        this.liste = this.props.data;
+        this.state = {
+            ouvert: true,
+            options: this.props.data,
+            abbreviation: '',
+            libelle: ''
+        }
     }
 
-    traitementItem = item => (
-        <option key={item.abbreviation} value={item.abbreviation} disabled={item.disabled}>
-        {item.libelle}
-        </option>
+
+    componentDidUpdate(){
+    }
+
+    componentWillUnmoun(){
+    }
+
+
+    creationItem = item => (
+        <li className="selecteurItem"
+        key={item.abbreviation} 
+        value={item.abbreviation} 
+        disabled={item.disabled} 
+        onClick={() => this.optionChoisie(item.abbreviation, item.libelle)}>
+        {item.libelle} 
+        </li>
     );
 
-    affichageItems = liste => {
-        const descendants = liste.map(x => {
-            let retour;
-
-            if(x.items){
-                retour = (
-                    <optgroup label={x.groupe} key={x.groupe.toLowerCase()}>
-                    {x.items.map(this.traitementItem)}
-                    </optgroup>
-                );
-            } else {
-                retour = this.traitementItem(x);
-            }
-        return retour;
+    creationSelecteur = data => {
+        let liste = data.map(x => {
+            let groupe = x.groupe;
+            let items = x.items;
+            let retour = (
+                <details className="detailsGroupe"key={groupe.toLowerCase()}>
+                <summary>{groupe}</summary>
+                <ul>
+                {items.map(this.creationItem)}
+                </ul>
+                </details>
+            );
+            return retour;
         });
-        return descendants;
-    };
+        return liste;
+    }
+
+    optionChoisie(abbreviation, libelle){
+        //this.setState({open: false}, this.props.actualisation(abbreviation, libelle));
+        this.setState({ouvert: false, abbreviation: abbreviation, libelle: libelle});
+    }
+
+    ouverture = envoi =>  envoi ? open : '';
+
 
     render(){
         return (
-            <select onChange={this.props.onChange}>
-            {this.affichageItems(this.liste)}
-            </select>
-        )
+            <details className="selecteur" key="selecteur" value={this.ouverture()}>
+            <summary>{this.state.libelle ? this.state.libelle : 'Instruments'}</summary>
+            <article className="cadreSelecteur">
+            {this.creationSelecteur(this.state.options)}
+            </article>
+            </details>
+        );
+
     }
 }
 
