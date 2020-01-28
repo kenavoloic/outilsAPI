@@ -141,7 +141,9 @@ main.panneau {
 .trombinoscope {
     display:grid;
     width: 100vw;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /*grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));*/
+    /*grid-template-columns: repeat(auto-fit, minmax(min-content, max-content));*/
+    grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
     grid-gap: 0.5em;
     padding:0;
     margin:0;
@@ -202,12 +204,16 @@ article.musicien {
     position:relative;
 }
 
-.musicien li.courriel, .musicien li.villeSimple {
+.musicien li.courriel, .musicien li.villeSimple{
     font-size:0.8em;
     text-align:left;
     overflow:hidden;
 }
 
+.musicien li.libelle {
+    font-size:1em;
+    text-align:center;
+}
 .musicien li.age::before,
 .musicien li.anciennete::before,
 .musicien li.telephone::before,

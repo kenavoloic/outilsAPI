@@ -34,7 +34,6 @@ class Application extends Component {
         if(donnees){
             this.setState({liste: donnees});
         }
-        //console.log(this.state.liste);
     }
 
 
@@ -44,16 +43,6 @@ class Application extends Component {
         }
     }
 
-    sauvegardeJson = () => {
-        let json = JSON.stringify(this.state.liste);
-        let blob = new Blob([json], {type: "text/plain"});
-        let url = URL.createObjectURL(blob);
-        let lien = document.createElement('a');
-        lien.download = 'filename.json';
-        lien.href = url;
-        lien.click();
-    }
-  
     render(){
         return (
             <React.Fragment>

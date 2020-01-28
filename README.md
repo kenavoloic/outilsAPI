@@ -8,10 +8,15 @@ Création d’une liste de musiciens selon les besoins du projet *ORCHESTRE* et 
 
 Choix du type d’instrumentiste puis après récupération des données, sauvegarde du fichier JSON.
 
-Le format du nom du fichier est [abbréviation]_[seed]_[nombre].json
 
 
+Le format du nom du fichier est [abbreviation]_[seed]_[nombre].json
 
+
+## À faire
+
+Filtrer les données de la réponse json pour ne garder que les éléments nécessaires
+Graphisme de l'interface
 
 
 

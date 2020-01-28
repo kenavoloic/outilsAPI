@@ -35,8 +35,8 @@ const Musicien = props => {
     let ville = props.ville;
     let portrait = props.portrait;
     let identifiant = props.identifiant;
-
-    //let fonctionInstrumentale = props.instrument ? props.instrument : "
+    let abbreviation = props.abbreviation;
+    let libelle = props.libelle;
     
     let dnat = new Date(dob);
     let dnatChaine = jourMoisAnnee(dnat);
@@ -54,6 +54,7 @@ const Musicien = props => {
         <h1 className={couleurGenre}>{prenom} {nom}</h1>
         <img src={portrait} alt={nom} />
         <ul>
+        <li className="libelle">{libelle}</li>
         <li className="age">{ageChaine}</li>
         <li className="anciennete">{ancienneteChaine}</li>
         <li className="telephone">{telephone}</li>

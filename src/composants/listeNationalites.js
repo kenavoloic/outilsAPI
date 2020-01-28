@@ -22,8 +22,7 @@ const listeNationalites = function(){
 
   const eu = ['au', 'de', 'dk', 'es', 'fi', 'fr', 'gb', 'ie', 'no', 'nl'];
   const nonEU = ['br', 'ca', 'ch', 'ir', 'nz', 'tr', 'us'];
-  //console.log(eu, nonEU);
-  //console.log(liste);
+/*
   Array.from(liste).forEach(x => console.log(x.nationalite, x.booleen));
 
   const modificationListe = (choix,  liste) => {
@@ -38,23 +37,11 @@ const listeNationalites = function(){
   const listeEU = modificationListe(eu, Array.from(liste));
   const listeNonEU = modificationListe(nonEU, Array.from(liste));
   const listeComplete = Array.from(liste).map(x => x.booleen=true);
-  /*
-  const listeComplete = () => {
-    return liste.map(x => {
-    x.booleen = true;
-    return x;
-    });
 
-  };
-  */
-  
+ 
   return {listeComplete, listeEU, listeNonEU};
+*/
+    return {liste};
 	      
 };
 
-let a = new listeNationalites();
-/*
-console.log(a.listeComplete);
-console.log(a.listeEU);
-console.log(a.listeNonEU);
-*/

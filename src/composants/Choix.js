@@ -49,16 +49,17 @@ class Choix extends React.Component {
     }
 
     optionChoisie(abbreviation, libelle){
-        //this.setState({open: false}, this.props.actualisation(abbreviation, libelle));
-        this.setState({ouvert: false, abbreviation: abbreviation, libelle: libelle});
+        this.setState({ouver: false, abbreviation: abbreviation, libelle: libelle}, this.props.actualisation({abbreviation: abbreviation, libelle: libelle}));
     }
+
+    // à finir : ouverture/fermeture du details
 
     ouverture = envoi =>  envoi ? open : '';
 
 
     render(){
         return (
-            <details className="selecteur" key="selecteur" value={this.ouverture()}>
+            <details className="selecteur" key="selecteur" value={this.ouverture()} name="instrument">
             <summary>{this.state.libelle ? this.state.libelle : 'Instruments'}</summary>
             <article className="cadreSelecteur">
             {this.creationSelecteur(this.state.options)}

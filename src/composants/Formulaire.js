@@ -25,22 +25,32 @@ class Formulaire extends React.Component {
     }
 
     changement = e => {
-        console.log(e.target.name, e.target.value);
         this.setState({[e.target.name]: e.target.value});
     }
 
     changementInstrument = e => {
-       console.log(e.target.options[e.target.selectedIndex]); 
+        //console.log(e.target);
+       //console.log(e.target.options[e.target.selectedIndex]); 
         //console.log(e.target.value, e.target.options[e.target.selectedIndex].dataset.libelle);
+        /*
         this.setState({
             abbreviation: e.target.value,
             libelle: e.target.options[e.target.selectedIndex].dataset.libelle
         });
+        */
+        //this.setState({abbreviation: e.target.abbreviation, libelle: e.target.libelle});
     }
 
     componentDidUpdate = () => {
         //console.log(this.state.abbreviation, this.state.libelle, this.state.seed, this.state.nombrePostulants);
+        //const {abbreviation, libelle, nombrePostulants, seed} = this.state;
+/*    
+       if(abbreviation && libelle && nombrePostulants && seed){
+           this.setState({boutonEnvoi: true});
+       }
+*/
     }
+
 
     getLien = () => {
         let resultats = `results=${this.state.nombrePostulants}`;
@@ -51,13 +61,12 @@ class Formulaire extends React.Component {
 
     getDonnees = e => {
         e.preventDefault();
-        this.setState({boutonSauvegarde: true}); // à supprimer par la suite
-        //console.log(this.state.posteApourvoir, this.getLien());
         let data = new FormData(e.target);
-        //console.log(e.target);
         fetch(this.getLien())
         .then(r => r.json())
         .then(r => {
+            r.results['abbreviation'] = this.state.abbreviation;
+            r.results['libelle'] = this.state.libelle;
             this.setState({liste: r.results})
             this.props.canalEnfantParent(this.state.liste);
         })
@@ -77,24 +86,21 @@ class Formulaire extends React.Component {
     }
 
 
-    // doit renvoyer la liste à la classe parente qui va créer une instance de trombinoscope
-    // il faut donc supprimer la classe ENTETE qui ne sert plus à rien
-    //
-    getTrombinoscope = (liste, nomClasse="trombinoscope") => {
-        if(liste){
-            return (
-                <Trombinoscope data={liste} nomClasse={nomClasse} />
-            )
-        }
+    actualisation = e => {
+        this.setState({abbreviation: e.abbreviation, libelle: e.libelle});
     }
 
-
     render(){
+
+        const {abbreviation, libelle, nombrePostulants, seed, liste} = this.state;
+        const requetePossible = abbreviation && libelle && nombrePostulants && seed;
+        const sauvegardePossible = liste.length > 0;
+
         return (
             <nav className="barre">
             <form onSubmit={this.getDonnees} className={this.props.nomClasse}>
 
-            <Choix data={listeOrchestrale} name="instrument" onChange={this.changementInstrument} required />
+            <Choix data={listeOrchestrale} name="instrument" actualisation={this.actualisation} required />
             
             <label htmlFor="nombre">Nombre</label>
             <input name="nombrePostulants" type="number" min="1" max="100"  size="6" placeholder="Nombre" onChange={this.changement} value={this.state.nombrePostulants} required />
@@ -102,10 +108,10 @@ class Formulaire extends React.Component {
             <label htmlFor="seed">Seed</label>
             <input name="seed" type="text" minLength="1" maxLength="32" placeholder="seed" onChange={this.changement} value={this.state.seed} required />
             
-            <button type="submit">Envoi</button>
+            <button type="submit" disabled={!requetePossible}>Envoi</button>
             
             </form>
-            <button onClick={this.sauvegarderJson} disabled={!this.state.boutonSauvegarde}>Enregistrer</button>
+            <button onClick={this.sauvegarderJson} disabled={!sauvegardePossible}>Enregistrer</button>
             </nav>
         );
     }
