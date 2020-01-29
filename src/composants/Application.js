@@ -30,9 +30,10 @@ class Application extends Component {
 
     componentDidCatch = (erreur, info) => console.log(erreur.message);
 
-    communicationFormulaireApplication = donnees => {
+    communicationFormulaireApplication = (donnees, abbreviation, libelle)  => {
+        console.log("Réception colis", abbreviation, libelle);
         if(donnees){
-            this.setState({liste: donnees});
+            this.setState({liste: donnees, abbreviation: abbreviation, libelle: libelle});
         }
     }
 
@@ -49,7 +50,7 @@ class Application extends Component {
             <header className="entete">
             <Formulaire nomClasse="enteteFormulaire" canalEnfantParent={this.communicationFormulaireApplication}/>
             </header>
-            {this.state.liste ? <Trombinoscope data={this.state.liste} nomClasse="trombinoscope" listeMusiciens={this.listeMusiciens} /> : null} 
+            {this.state.liste ? <Trombinoscope data={this.state.liste} abbreviation={this.state.abbreviation} libelle={this.state.libelle} nomClasse="trombinoscope" /> : null} 
             </React.Fragment>
         );
     }

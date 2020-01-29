@@ -9,13 +9,12 @@ class Formulaire extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            abbreviation: '',
-            libelle: '',
+            abbreviation: 'chef',
+            libelle: 'maestro',
             nombrePostulants: 12,
-            seed: 'louisonBobet',
+            seed: 'Louison Bobet',
             telechargementEnCours: false,
             liste: [],
-            listeMusiciens: [],
             erreur: '',
             url: 'https://randomuser.me/api/',
             nationalites: 'nat=au,br,ca,ch,de,dk,es,fi,fr,gb,ie,no,nl,nz,us',
@@ -28,17 +27,12 @@ class Formulaire extends React.Component {
         this.setState({[e.target.name]: e.target.value});
     }
 
+    actualisation = e => {
+        this.setState({abbreviation: e.abbreviation, libelle: e.libelle});
+    }
+
     changementInstrument = e => {
-        //console.log(e.target);
-       //console.log(e.target.options[e.target.selectedIndex]); 
-        //console.log(e.target.value, e.target.options[e.target.selectedIndex].dataset.libelle);
-        /*
-        this.setState({
-            abbreviation: e.target.value,
-            libelle: e.target.options[e.target.selectedIndex].dataset.libelle
-        });
-        */
-        //this.setState({abbreviation: e.target.abbreviation, libelle: e.target.libelle});
+        this.setState({abbreviation: e.abbreviation, libelle: e.libelle});
     }
 
     componentDidUpdate = () => {
@@ -59,19 +53,75 @@ class Formulaire extends React.Component {
         return lien;    
     }
 
+    filtreRandomUser = x => {
+        return {
+            genre: x.gender,
+            nom: x.name.last,
+            prenom: x.name.first,
+            titre: x.name.title,
+            ville: x.location.city,
+            pays: x.location.country,
+            courriel: x.email,
+            dob: x.dob.date,
+            telephone: x.phone,
+            portable: x.cell,
+            nationalite: x.nat,
+            portrait: x.picture.large,
+            identifiant: x.id.value ? x.id.value : `${x.name.last}_${x.name.first}_${x.dob.age}`
+        };
+    }
+
+    obtenirDonnees = e => {
+        e.preventDefault();
+        let data = new FormData(e.target);
+        let lien = this.getLien();
+        console.log(lien);
+        fetch(lien)
+        .then(r => r.json())
+        .then(r => r.results.map(this.filtreRandomUser))
+        .then(r => {
+            this.setState({liste: r});
+            this.props.canalEnfantParent(this.state.liste, this.state.abbreviation, this.state.libelle);
+        });
+        //return;
+    }
+
     getDonnees = e => {
         e.preventDefault();
         let data = new FormData(e.target);
         fetch(this.getLien())
         .then(r => r.json())
+        .then(r => r.results.map(this.filtreRandomUser))
         .then(r => {
-            r.results['abbreviation'] = this.state.abbreviation;
-            r.results['libelle'] = this.state.libelle;
-            this.setState({liste: r.results})
-            this.props.canalEnfantParent(this.state.liste);
-        })
+            this.setState({liste: r});
+            this.props.canalEnfantParent(r, this.state.abbreviation, this.state.libelle);
+            //this.props.canalEnfantParent(this.state.liste, this.state.abbreviation, this.state.libelle);
+        });
 
-        //this.setState({telechargementEnCours: true});
+        /*
+        let data = new FormData(e.target);
+        fetch(this.getLien())
+        .then(r => r.json())
+        .then(r => r.results.map(this.filtreRandomUser))
+        .then(r => { 
+            this.setState({liste: r.results});
+            this.props.canalEnfantParent(this.state.liste, this.state.abbreviation, this.state.libelle);
+        });
+*/
+        //.then(r => Array.from(r).map(this.filtreRandomUser))
+        /*
+        .then(r => {
+            let retour = Array.from(r);
+            return retour.map(this.filtreRandomUser);
+        })
+        */
+            /*
+        .then(r => {
+            //r.results['abbreviation'] = this.state.abbreviation;
+            //r.results['libelle'] = this.state.libelle;
+            this.setState({liste: r.results})
+            this.props.canalEnfantParent(this.state.liste, this.state.abbreviation, this.state.libelle);
+        })*/
     }
 
     sauvegarderJson = e => {
@@ -86,10 +136,6 @@ class Formulaire extends React.Component {
     }
 
 
-    actualisation = e => {
-        this.setState({abbreviation: e.abbreviation, libelle: e.libelle});
-    }
-
     render(){
 
         const {abbreviation, libelle, nombrePostulants, seed, liste} = this.state;
@@ -98,9 +144,9 @@ class Formulaire extends React.Component {
 
         return (
             <nav className="barre">
-            <form onSubmit={this.getDonnees} className={this.props.nomClasse}>
+            <form onSubmit={this.obtenirDonnees} className={this.props.nomClasse}>
 
-            <Choix data={listeOrchestrale} name="instrument" actualisation={this.actualisation} required />
+            <Choix data={listeOrchestrale} name="instrument" actualisation={this.changementInstrument} required />
             
             <label htmlFor="nombre">Nombre</label>
             <input name="nombrePostulants" type="number" min="1" max="100"  size="6" placeholder="Nombre" onChange={this.changement} value={this.state.nombrePostulants} required />

@@ -1,10 +1,12 @@
 import React from 'react';
+import BarreTitreCheckBox from './BarreTitreCheckBox';
 
 import { add as dateFunctionsAdd, format as dateFunctionsFormat, formatDistance as dateFunctionsFormatDistance, formatDistanceStrict as dateFunctionsFormatDistanceStrict, formatDistanceToNow as dateFunctionsFormatDistanceToNow} from 'date-fns';
 import { fr as dateFunctionsFr} from 'date-fns/locale';
 
 
 const Musicien = props => {
+
 
     const setEmbauche = majorite => {
         let maintenant = new Date();
@@ -48,10 +50,17 @@ const Musicien = props => {
     let ancienneteChaine = depuisQuand(embauche);
     let couleurGenre = ( genre === 'f') ? 'couleurFemme' : 'couleurHomme';
     let nomClasse = "musicien";
+    let clef = `${abbreviation}_${nom}_${prenom}`;
+
+    //    <BarreTitreCheckBox nom={nom} prenom={prenom} couleur={couleurGenre} />
+    //
+    const afficheInfo = () => {
+        console.log(clef, nom, prenom); 
+    };
 
     return (
-        <article className={nomClasse}>
-        <h1 className={couleurGenre}>{prenom} {nom}</h1>
+        <article className={nomClasse} key={clef}>
+        <h1 className={couleurGenre}>{nom} {prenom}</h1>
         <img src={portrait} alt={nom} />
         <ul>
         <li className="libelle">{libelle}</li>

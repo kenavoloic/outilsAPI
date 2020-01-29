@@ -44,13 +44,34 @@ class Trombinoscope extends React.Component {
 const Trombinoscope = (props) => {
 
     const liste = props.data;
-    const abbreviation = liste.abbreviation;
-    const libelle = liste.libelle;
+    const abbreviation = props.abbreviation;
+    const libelle = props.libelle;
 
     const nomClasse = props.nomClasse;
     const suffixeAleatoire = () => new Date().getTime()+"_"+(Math.random()+1).toString(36).substring(2,12);
 
     const conservatoire = x => {
+        return <Musicien 
+        abbreviation  = {abbreviation}
+        libelle = {libelle}
+        genre = {x.genre}
+        nom = {x.nom}
+        prenom = {x.prenom}
+        titre = {x.titre}
+        ville = {x.ville}
+        pays = {x.pays}
+        courriel = {x.courriel}
+        dob = {x.dob}
+        telephone = {x.telephone}
+        portable = {x.portable}
+        nationalite = {x.nationalite}
+        portrait = {x.portrait}
+        identifiant = {x.identifiant}
+        key = {x.identifiant}
+        />
+    }
+
+    const _conservatoire = x => {
         return <Musicien
         key={`id_${suffixeAleatoire()}`}
         identifiant = {x.id.value}

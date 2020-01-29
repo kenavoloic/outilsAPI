@@ -143,12 +143,12 @@ main.panneau {
     width: 100vw;
     /*grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));*/
     /*grid-template-columns: repeat(auto-fit, minmax(min-content, max-content));*/
-    grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
     grid-gap: 0.5em;
-    padding:0;
     margin:0;
-    border-radius:var(--bordureRayon);
     margin-top:3.0em;
+    padding:0 20px;
+    border-radius:var(--bordureRayon);
 }
 
 
