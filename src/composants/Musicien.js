@@ -59,7 +59,7 @@ const Musicien = props => {
     };
 
     return (
-        <article className={nomClasse} key={clef}>
+        <article className={nomClasse} key={clef} onClick={afficheInfo}>
         <h1 className={couleurGenre}>{nom} {prenom}</h1>
         <img src={portrait} alt={nom} />
         <ul>

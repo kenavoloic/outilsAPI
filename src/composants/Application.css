@@ -124,7 +124,7 @@ body {
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:0 15px;
+    padding:15px 15px;
 }
 
 main.panneau {
@@ -269,46 +269,53 @@ header.entete {
 
 input[type="text"],
 input[type="number"]{
-    font-size:inherit;
-    border:1px solid #223366;
-    border-radius:4px;
-    padding:3px;
-    text-align:center;
+  font-size:100%;
+  border:1px solid #223366;
+  border-radius:4px;
+  padding:3px;
+  text-align:center;
+  box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.25);
 }
 
 button {
-    font-size:100%;
-    text-align:center;
-    border:1px solid #223366;
-    border-radius:4px;
-    padding:3px;
+  font-size:80%;
+  text-align:center;
+  /*border:1px solid #223366;*/
+  border:2px solid #88dd88;
+  border-radius:4px;
+  padding:10px;
+  box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.25);
+}
 
+button:disabled,
+button[disabled] {
+  font-size:80%;
+  border:2px solid #ff4500;
+  box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.25);
+  padding:10px;
+  
 }
 
 label {
-    font-size:inherit;
-    text-align:center;
-    border:1px solid #223366;
-    border-radius:4px;
-    padding:3px;
+  font-size:100%;
+  text-align:center;
+  border:1px solid #223366;
+  border-radius:4px;
+  padding:3px;
+
+  box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.25);
 }
 
 
 form.enteteFormulaire {
-    display:flex;
-    justify-content:space-between;
-    font-size:100%;
-    /*background-color:#44dd88;*/
-}
-/*
-form.enteteFormulaire  label{
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  font-size:100%;
+  width: 70%;
+  /*background-color:#44dd88;*/
 }
 
-form.enteteFormulaire  input[type="text"]{
-    padding:6px;
-    text-align:center;
-}
-*/
 form.enteteFormulaire > button.requete {
     background-color:#ddbb44;
 }
@@ -350,10 +357,10 @@ article.cadreSelecteur {
 }
 
 details.selecteur {
-    font-size:80%;
+    font-size:100%;
     display: inline-block;
     border:1px solid #c5c5c5;
-    border-radius: 3px;
+    border-radius: 4px;
     position:relative;
     color:#454545;
     background-color:#ffffff;

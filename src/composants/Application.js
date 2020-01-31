@@ -15,11 +15,9 @@ class Application extends Component {
         super(props);
 
         this.state = {
-            liste: [],
-            listeAnterieure: [],
+            liste: null,
             abbreviation: '',
-            libelle: '',
-            musiciens: []
+            libelle: ''
         
         }
     }
@@ -28,19 +26,21 @@ class Application extends Component {
 
     componentDidUpdate = () => {}
 
-    componentDidCatch = (erreur, info) => console.log(erreur.message);
-
-    communicationFormulaireApplication = (donnees, abbreviation, libelle)  => {
-        console.log("Réception colis", abbreviation, libelle);
-        if(donnees){
-            this.setState({liste: donnees, abbreviation: abbreviation, libelle: libelle});
-        }
+    componentDidCatch = (erreur, info) => {
+        console.log(erreur);
+        console.log(info);
     }
 
-
-    listeMusiciens = data => {
-        if(data){
-            this.setState({musiciens: data});
+    communicationFormulaireApplication = (donnees, abbreviation, libelle)  => {
+        //console.log("Réception colis", abbreviation, libelle);
+/*
+        if(this.state.liste.length > 0){
+            this.state.listeAnterieure = undefined;
+            this.state.listeAnterieur = JSON.parse(JSON.stringify(this.state.liste));
+        }
+*/
+        if(donnees){
+            this.setState({liste: donnees, abbreviation: abbreviation, libelle: libelle});
         }
     }
 

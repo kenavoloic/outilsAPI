@@ -9,10 +9,10 @@ class Formulaire extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            abbreviation: 'chef',
-            libelle: 'maestro',
+            abbreviation: '',
+            libelle: '',
             nombrePostulants: 12,
-            seed: 'Louison Bobet',
+            seed: 'LouisonBobet',
             telechargementEnCours: false,
             liste: [],
             erreur: '',
@@ -36,13 +36,6 @@ class Formulaire extends React.Component {
     }
 
     componentDidUpdate = () => {
-        //console.log(this.state.abbreviation, this.state.libelle, this.state.seed, this.state.nombrePostulants);
-        //const {abbreviation, libelle, nombrePostulants, seed} = this.state;
-/*    
-       if(abbreviation && libelle && nombrePostulants && seed){
-           this.setState({boutonEnvoi: true});
-       }
-*/
     }
 
 
@@ -75,7 +68,6 @@ class Formulaire extends React.Component {
         e.preventDefault();
         let data = new FormData(e.target);
         let lien = this.getLien();
-        console.log(lien);
         fetch(lien)
         .then(r => r.json())
         .then(r => r.results.map(this.filtreRandomUser))
@@ -97,31 +89,6 @@ class Formulaire extends React.Component {
             this.props.canalEnfantParent(r, this.state.abbreviation, this.state.libelle);
             //this.props.canalEnfantParent(this.state.liste, this.state.abbreviation, this.state.libelle);
         });
-
-        /*
-        let data = new FormData(e.target);
-        fetch(this.getLien())
-        .then(r => r.json())
-        .then(r => r.results.map(this.filtreRandomUser))
-        .then(r => { 
-            this.setState({liste: r.results});
-            this.props.canalEnfantParent(this.state.liste, this.state.abbreviation, this.state.libelle);
-        });
-*/
-        //.then(r => Array.from(r).map(this.filtreRandomUser))
-        /*
-        .then(r => {
-            let retour = Array.from(r);
-            return retour.map(this.filtreRandomUser);
-        })
-        */
-            /*
-        .then(r => {
-            //r.results['abbreviation'] = this.state.abbreviation;
-            //r.results['libelle'] = this.state.libelle;
-            this.setState({liste: r.results})
-            this.props.canalEnfantParent(this.state.liste, this.state.abbreviation, this.state.libelle);
-        })*/
     }
 
     sauvegarderJson = e => {
@@ -147,12 +114,16 @@ class Formulaire extends React.Component {
             <form onSubmit={this.obtenirDonnees} className={this.props.nomClasse}>
 
             <Choix data={listeOrchestrale} name="instrument" actualisation={this.changementInstrument} required />
-            
+
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>    
             <label htmlFor="nombre">Nombre</label>
             <input name="nombrePostulants" type="number" min="1" max="100"  size="6" placeholder="Nombre" onChange={this.changement} value={this.state.nombrePostulants} required />
-            
+            </div>
+
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
             <label htmlFor="seed">Seed</label>
             <input name="seed" type="text" minLength="1" maxLength="32" placeholder="seed" onChange={this.changement} value={this.state.seed} required />
+            </div>
             
             <button type="submit" disabled={!requetePossible}>Envoi</button>
             
