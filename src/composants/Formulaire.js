@@ -101,12 +101,14 @@ class Formulaire extends React.Component {
             <form onSubmit={this.obtenirDonnees} className={this.props.nomClasse}>
 
             <Choix data={listeOrchestrale} name="instrument" actualisation={this.changementInstrument} required />
-
+<div className="labelInput">
             <label htmlFor="nombre">Nombre</label>
             <input name="nombrePostulants" type="number" min="1" max="100"  size="6" placeholder="Nombre" onChange={this.changement} value={this.state.nombrePostulants} required />
-
+</div>
+            <div className="labelInput">
             <label htmlFor="seed">Seed</label>
             <input name="seed" type="text" minLength="1" maxLength="32" placeholder="seed" onChange={this.changement} value={this.state.seed} required />
+            </div>
             
             <button type="submit" disabled={!requetePossible}>Envoi</button>
             

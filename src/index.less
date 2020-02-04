@@ -30,6 +30,15 @@
 @footerFond: @articleLiFond;
 @footerCouleur: @articleLiBeforeCouleur;
 
+@couleur: #bada55; //#3bafda;
+@complementaire: spin(@couleur, 180);
+@couleur2: #fefefe;//spin(@couleur, 225);
+@active: #ffffff;
+@activee: @active;
+@desactive: lightness(desaturate(@couleur, 100%), 30%);
+@desactivee: @desactive;
+
+@labelCouleur: #303030;
 *, *::before, *::after {
     margin:0;
     padding:0;
@@ -59,21 +68,53 @@ body {
     background-color: @emakume;
 }
 
-/*
-.grilleMusiciens {
-    display:flex;
-    align-items:center;
-    justify-items:center;
+button {
+font: inherit;
+line-height:2;
+height:2em;
+padding: 0 1em;
+text-align:center;
+margin:1em;
 }
-*/
-button,
+
 input[type="text"],
-input[type="number"],
-label{
+input[type="number"]{
 line-height:1;
 font:inherit;
-padding:1.25em;
-height:2.25em;
+padding:1em;
+height:2em;
+text-align:center;
+}
+
+.labelInput {
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    border-radius:5px;
+    padding: 5px;
+    background-color: @couleur;
+    border:2px solid @complementaire;//#202020;
+
+    input {
+        font:inherit;
+        border: 1px solid #202020;//#bfbfbf;
+        border-radius:5px;
+        background-color: @couleur2;
+
+    }
+
+    label {
+        font:inherit;
+        line-height:1;
+        height:1em;
+        text-align:center;
+        //margin:0;
+        padding:0 15px;
+        color: @labelCouleur;//#f2f2f2;//#303030;//#feffff;
+        background-color: inherit;
+
+    }
 }
 
 
@@ -92,6 +133,7 @@ button {
 button:disabled,
 button[disabled] {
     border:2px solid #ff4500;
+    background: @desactivee;
     //padding:10px;
 }
 
@@ -115,7 +157,7 @@ nav.barre {
     padding:15px 15px;    
     display:grid;
     //grid-template-columns: 8fr 1fr;
-    grid-template-columns: 80% 20;
+    grid-template-columns: 80% 20%;
     grid-gap: 30px;
     //grid-auto-flow: row;
     //justify-content:space-around;
@@ -143,9 +185,10 @@ details.selecteur {
     border-radius: 4px;
     position:relative;
     color:#454545;
-    background-color:#ffffff;
+    background-color:@couleur;//#ffffff;
     min-width:14em;
     box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.25);
+    line-height:2;
 }
 
 details.selecteur  summary {
@@ -197,9 +240,13 @@ details.detailsGroupe  ul li:hover {
 button#enregistrer {
     grid-column-start:2;
     grid-column-end:3;
-    background-color:#feffff;
+    margin-right:2em;
 }
 
+button#enregistrer:disabled,
+button#enregistrer[disabled] {
+    background-color: @desactivee;
+}
 
 .trombinoscope {
     display:grid;

@@ -1,5 +1,4 @@
 import React from 'react';
-import BarreTitreCheckBox from './BarreTitreCheckBox';
 
 import { add as dateFunctionsAdd, format as dateFunctionsFormat, formatDistance as dateFunctionsFormatDistance, formatDistanceStrict as dateFunctionsFormatDistanceStrict, formatDistanceToNow as dateFunctionsFormatDistanceToNow} from 'date-fns';
 import { fr as dateFunctionsFr} from 'date-fns/locale';

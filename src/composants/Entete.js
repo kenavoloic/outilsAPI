@@ -5,7 +5,7 @@ class Entete extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            posteApourvoir: 'chef',
+            posteApourvoir: '',
             nombrePostulants: 12,
             seed: 'louisonBobet'
         };
@@ -37,7 +37,6 @@ class Entete extends React.Component {
     componentDidUpdate(){
         console.log("Mise à jour");
     }
-
 
     render(){
         return(
