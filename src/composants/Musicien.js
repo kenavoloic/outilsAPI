@@ -25,6 +25,8 @@ const Musicien = props => {
 
     const formatNombre = (nombre, nbZero=2) => String(nombre).padStart(nbZero,'0');
 
+    const longueurMaximum = 15;
+
     let genre = (props.genre.toLowerCase() === 'f' || props.genre.toLowerCase() === 'female') ? 'f':'h';
     let titre = props.titre;
     let dob = props.dob;
@@ -52,15 +54,13 @@ const Musicien = props => {
     let nomClasse = "musicien";
     let clef = `${abbreviation}_${nom}_${prenom}`;
 
-    //    <BarreTitreCheckBox nom={nom} prenom={prenom} couleur={couleurGenre} />
-    //
     const afficheInfo = () => {
         console.log(clef, nom, prenom); 
     };
 
     return (
         <article className={nomClasse} key={clef} onClick={afficheInfo}>
-        <h1 className={couleurGenre}>{nom} {prenom}</h1>
+        <h1 className={couleurGenre}>{prenom} {nom}</h1>
         <img src={portrait} alt={nom} />
         <ul>
         <li className="libelle">{libelle}</li>
@@ -68,8 +68,8 @@ const Musicien = props => {
         <li className="anciennete">{ancienneteChaine}</li>
         <li className="telephone">{telephone}</li>
         <li className="portable">{portable}</li>
-        <li className="courriel">{courriel}</li>
-        {ville.length > 15 ? <li className="villeSimple">{ville}</li> : <li className="ville">{ville}</li>}
+        {courriel.length > longueurMaximum ? <li className="courrielSimple">{courriel}</li> : <li className="courriel">{courriel}</li>}
+        {ville.length > longueurMaximum ? <li className="villeSimple">{ville}</li> : <li className="ville">{ville}</li>}
         <li className="nationalite">{nationalite}</li>
         </ul>
         </article>

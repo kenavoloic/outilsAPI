@@ -11,7 +11,7 @@ class Formulaire extends React.Component {
         this.state = {
             abbreviation: '',
             libelle: '',
-            nombrePostulants: 12,
+            nombrePostulants: 2,
             seed: 'LouisonBobet',
             telechargementEnCours: false,
             liste: [],
@@ -75,21 +75,8 @@ class Formulaire extends React.Component {
             this.setState({liste: r});
             this.props.canalEnfantParent(this.state.liste, this.state.abbreviation, this.state.libelle);
         });
-        //return;
     }
 
-    getDonnees = e => {
-        e.preventDefault();
-        let data = new FormData(e.target);
-        fetch(this.getLien())
-        .then(r => r.json())
-        .then(r => r.results.map(this.filtreRandomUser))
-        .then(r => {
-            this.setState({liste: r});
-            this.props.canalEnfantParent(r, this.state.abbreviation, this.state.libelle);
-            //this.props.canalEnfantParent(this.state.liste, this.state.abbreviation, this.state.libelle);
-        });
-    }
 
     sauvegarderJson = e => {
         this.setState({boutonSauvegarde: false});
@@ -115,20 +102,16 @@ class Formulaire extends React.Component {
 
             <Choix data={listeOrchestrale} name="instrument" actualisation={this.changementInstrument} required />
 
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>    
             <label htmlFor="nombre">Nombre</label>
             <input name="nombrePostulants" type="number" min="1" max="100"  size="6" placeholder="Nombre" onChange={this.changement} value={this.state.nombrePostulants} required />
-            </div>
 
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
             <label htmlFor="seed">Seed</label>
             <input name="seed" type="text" minLength="1" maxLength="32" placeholder="seed" onChange={this.changement} value={this.state.seed} required />
-            </div>
             
             <button type="submit" disabled={!requetePossible}>Envoi</button>
             
             </form>
-            <button onClick={this.sauvegarderJson} disabled={!sauvegardePossible}>Enregistrer</button>
+            <button id="enregistrer" onClick={this.sauvegarderJson} disabled={!sauvegardePossible}>Enregistrer</button>
             </nav>
         );
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './Application.css';
+
 
 class Choix extends React.Component {
     constructor(props){

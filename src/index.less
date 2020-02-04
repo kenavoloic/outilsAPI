@@ -1,0 +1,319 @@
+// définitions constantes
+
+@bodyCouleurFond: #888888;
+@couleurNavFond: #466cdb;
+@bordureRayon:5px;
+
+@gizon:#afbefa;
+@emakume:#faafbe;
+
+@articleCouleurFond:#ffffff;
+@articleCouleurBordure:#888888;
+@articleBordureCouleur:#888888;
+@articleBordureLargeur: 2px;
+@articleBordureRayon:@bordureRayon;
+@articleH1Couleur:#ffffff;
+@articleH1LineHeight:2;
+@articleLiBeforeCouleur:#505050;
+@articleLiFontFamily: sans-serif;
+@articleLiFontSize: 0.9em;
+@articleLiCouleur: inherit;
+@articleLiFond:#dddddd;
+@articleLiBordureRayon:3px;
+@articleLiBordureCouleur: #b0b0b0;
+@articleLiBordureLargeur: 2px;
+
+@barreFond: #bfbfbf;
+@enteteFormulaireFond:#befaaf;
+
+@enteteFond: @articleLiFond;
+@footerFond: @articleLiFond;
+@footerCouleur: @articleLiBeforeCouleur;
+
+*, *::before, *::after {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html {
+    font-size:100%;
+}
+
+body {
+    margin:0.625em;
+    background:@bodyCouleurFond;
+}
+
+#racine {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.couleurHomme {
+    background-color: @gizon;
+}
+
+.couleurFemme {
+    background-color: @emakume;
+}
+
+/*
+.grilleMusiciens {
+    display:flex;
+    align-items:center;
+    justify-items:center;
+}
+*/
+button,
+input[type="text"],
+input[type="number"],
+label{
+line-height:1;
+font:inherit;
+padding:1.25em;
+height:2.25em;
+}
+
+
+button {
+    //font-size:80%;
+    text-align:center;
+    //line-height:1;
+    //height:2.25em;
+    border:2px solid #88dd88;
+    border-radius:4px;
+    //padding:1.25em;//10px;
+    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.25);
+    background-color: #fefefe;
+}
+
+button:disabled,
+button[disabled] {
+    border:2px solid #ff4500;
+    //padding:10px;
+}
+
+
+header.entete {
+    font-family:sans-serif;
+    font-size:1em;
+    color:#202020;
+    background-color: @enteteFond;
+    z-index:1;
+    width:100vw;
+    position:fixed;
+    top:0;
+    left:0;
+    line-height:2;
+}
+
+nav.barre {
+    width:100%;
+    background-color: @barreFond;
+    padding:15px 15px;    
+    display:grid;
+    //grid-template-columns: 8fr 1fr;
+    grid-template-columns: 80% 20;
+    grid-gap: 30px;
+    //grid-auto-flow: row;
+    //justify-content:space-around;
+}
+
+form.enteteFormulaire {
+    grid-column-start:1;
+    grid-column-end:2;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    font-size:100%;
+}
+
+article.cadreSelecteur {
+    display:flex;
+    flex-direction: column;
+    position:absolute;
+}
+
+details.selecteur {
+    font-size:100%;
+    display: inline-block;
+    border:1px solid #c5c5c5;
+    border-radius: 4px;
+    position:relative;
+    color:#454545;
+    background-color:#ffffff;
+    min-width:14em;
+    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.25);
+}
+
+details.selecteur  summary {
+    cursor:pointer;
+    padding:6px 12px;
+    border:1px solid #252525;
+    list-style:none;
+}
+
+details.detailsGroupe {
+    display: inline-block;
+    border:1px solid #eeeeee;
+    background-color:#feffff;
+    min-width:9.85em;
+    margin-right:10px;
+}
+
+details.detailsGroupe  summary {
+    cursor:default;
+    padding: 5px 0px 5px 5px;
+    border-radius:4px;
+    list-style:none;
+}
+
+details.detailsGroupe  ul {
+    display:inline-table;
+    list-style:none;
+    border: 1px solid #ededed;
+    border-radius: 0 0 3px 3px;
+    background: #f4f4f4;
+    width:100%;
+}
+
+details.detailsGroupe  ul li {
+    display:block;
+    font-size:0.9em;
+    padding-top:5px;
+    padding-left:12px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+details.detailsGroupe  ul li:hover {
+    color:#44bbbb;
+    background-color:#fefefe;
+    cursor:pointer;
+}
+
+button#enregistrer {
+    grid-column-start:2;
+    grid-column-end:3;
+    background-color:#feffff;
+}
+
+
+.trombinoscope {
+    display:grid;
+    width: 100vw;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+    grid-gap: 0.5em;
+    justify-content:space-around;
+    margin:0;
+    margin-top:5.5em;
+    padding:0 20px;
+    border-radius:@bordureRayon;
+}
+
+
+article.musicien {
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    background-color:@articleCouleurFond;
+    border:@articleBordureLargeur solid @articleBordureCouleur;    
+    border-radius:8px;
+
+    img {
+        display:block;
+        width:100%;
+        height:auto;
+        padding:0;
+        margin:0;
+        box-shadow: -1px 0px 0px rgba(0,0,0,0.2);
+        flex:1;
+    }
+
+    h1 {
+        font-size:1em;
+        padding:0;
+        padding:1.5em, 0;
+        color: @articleH1Couleur;
+        text-align:center;    
+        line-height:@articleH1LineHeight;
+    }
+
+    p {
+        text-align:left;
+        margin-left:10px;
+        flex:1;
+        line-height:2;
+    }
+
+    ul {
+        list-style:none;
+        margin: 0 0 1em;
+    }
+
+    li {
+        font-family:@articleLiFontFamily;
+        font-size:@articleLiFontSize;
+        padding:10px;
+        margin:10px;
+        background-color:@articleLiFond;
+        border-radius:@articleLiBordureRayon;
+        border:@articleLiBordureLargeur solid @articleLiBordureCouleur;
+        text-align:right;
+        position:relative;
+    }
+
+    li.courrielSimple, li.villeSimple{
+        font-size:0.8em;
+        text-align:center;
+        overflow:hidden;
+    }
+
+    li.libelle {
+        font-size:1em;
+        text-align:center;
+    }
+
+    li.age::before,
+    li.anciennete::before,
+    li.telephone::before,
+    li.portable::before,
+    li.ville::before,
+    li.nationalite::before,
+    li.courriel::before {
+        position:absolute;
+        top: 0.75em;
+        left: 0.5em;
+        text-align:left;
+        font-size:inherit;
+        font-family:inherit;
+        color: @articleLiBeforeCouleur;
+    }
+
+    li.age::before {
+        content: "Age";
+    }
+
+    li.anciennete::before {
+        content: "Anc.";
+    }
+
+    li.telephone::before {
+        content: "Tél.";
+    }
+
+    li.portable::before {
+        content: "Port.";
+    }
+
+    li.ville::before {
+        content: "Ville";
+    }
+
+    li.nationalite::before {
+        content: "Nat.";
+    }
+}
+
