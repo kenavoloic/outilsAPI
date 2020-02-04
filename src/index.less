@@ -39,6 +39,10 @@
 @desactivee: @desactive;
 
 @labelCouleur: #303030;
+@boiteOmbre: 0px 4px 6px 0px rgba(0,0,0,0.25);
+
+
+
 *, *::before, *::after {
     margin:0;
     padding:0;
@@ -95,6 +99,7 @@ text-align:center;
     padding: 5px;
     background-color: @couleur;
     border:2px solid @complementaire;//#202020;
+    box-shadow: @boiteOmbre;
 
     input {
         font:inherit;
@@ -122,9 +127,9 @@ button {
     //font-size:80%;
     text-align:center;
     //line-height:1;
-    //height:2.25em;
-    border:2px solid #88dd88;
-    border-radius:4px;
+    height:2.5em;
+    border:3px solid #88dd88;
+    border-radius:5px;
     //padding:1.25em;//10px;
     box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.25);
     background-color: #fefefe;
@@ -157,31 +162,42 @@ nav.barre {
     padding:15px 15px;    
     display:grid;
     //grid-template-columns: 8fr 1fr;
-    grid-template-columns: 80% 20%;
+    //grid-template-columns: 80% 10% 10%;
     grid-gap: 30px;
+
+    grid-template-columns: repeat(15, 1fr);
     //grid-auto-flow: row;
     //justify-content:space-around;
 }
 
 form.enteteFormulaire {
-    grid-column-start:1;
-    grid-column-end:2;
+    //grid-column-start:1;
+    //grid-column-end:2;
+    grid-column:1/13;
+
     display:flex;
-    justify-content:space-around;
+    //justify-content:start;
+    
+    //column-gap: 1em;
     align-items:center;
     font-size:100%;
+    //flex: 1 1 auto;
+    
 }
 
 article.cadreSelecteur {
     display:flex;
     flex-direction: column;
     position:absolute;
+    padding: 0 1em 0;
+    box-shadow: @boiteOmbre;
 }
 
 details.selecteur {
     font-size:100%;
     display: inline-block;
-    border:1px solid #c5c5c5;
+    //border:1px solid #c5c5c5;
+    border:2px solid @complementaire;//#202020;
     border-radius: 4px;
     position:relative;
     color:#454545;
@@ -196,6 +212,16 @@ details.selecteur  summary {
     padding:6px 12px;
     border:1px solid #252525;
     list-style:none;
+
+    &.inactif {
+        color:inherit;
+        background-color:inherit;
+    }
+
+    &.actif {
+        color: #303030;
+        background-color: #fefefe;
+    }
 }
 
 details.detailsGroupe {
@@ -211,7 +237,14 @@ details.detailsGroupe  summary {
     padding: 5px 0px 5px 5px;
     border-radius:4px;
     list-style:none;
+
 }
+
+details.detailsGroupe    summary.actif {
+    color:#303030;
+    background-color: #fefefe;
+}
+
 
 details.detailsGroupe  ul {
     display:inline-table;
@@ -238,8 +271,9 @@ details.detailsGroupe  ul li:hover {
 }
 
 button#enregistrer {
-    grid-column-start:2;
-    grid-column-end:3;
+    //grid-column-start:3;
+    //grid-column-end:4;
+    grid-column:15/16;
     margin-right:2em;
 }
 
@@ -255,7 +289,7 @@ button#enregistrer[disabled] {
     grid-gap: 0.5em;
     justify-content:space-around;
     margin:0;
-    margin-top:5.5em;
+    margin-top:6.5em;
     padding:0 20px;
     border-radius:@bordureRayon;
 }

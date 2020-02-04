@@ -113,7 +113,7 @@ class Formulaire extends React.Component {
             <button type="submit" disabled={!requetePossible}>Envoi</button>
             
             </form>
-            <button id="enregistrer" onClick={this.sauvegarderJson} disabled={!sauvegardePossible}>Enregistrer</button>
+            <button id="enregistrer" onClick={this.sauvegarderJson} disabled={!sauvegardePossible}>Sauver</button>
             </nav>
         );
     }
