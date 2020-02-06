@@ -11,7 +11,7 @@ class Formulaire extends React.Component {
         this.state = {
             abbreviation: '',
             libelle: '',
-            nombrePostulants: 2,
+            nombrePostulants: 4,
             seed: 'LouisonBobet',
             telechargementEnCours: false,
             liste: [],

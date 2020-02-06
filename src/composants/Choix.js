@@ -37,7 +37,7 @@ class Choix extends React.Component {
             let items = x.items;
             let retour = (
                 <details className="detailsGroupe"key={groupe.toLowerCase()}>
-                <summary>{groupe}</summary>
+                <summary><span>{groupe}</span></summary>
                 <ul>
                 {items.map(this.creationItem)}
                 </ul>
@@ -56,7 +56,7 @@ class Choix extends React.Component {
     //ouverture = envoi =>  envoi ? 'open' : '';
 
     modificationSummary = libelle => {
-        return libelle ? <summary className="actif">{libelle}</summary> : <summary className="inactif">Instruments</summary>;
+        return libelle ? <summary className="actif"><span>{libelle}</span></summary> : <summary className="inactif"><span>Instruments</span></summary>;
     }
 
 
