@@ -9,7 +9,7 @@ module.exports = {
     entry: path.join(source, './index.js'),
     output: {
         path: distribution,
-        filename: 'main.js' //'./cca.[hash].js'
+        filename: './cca.[hash].js' //'main.js' //'./cca.[hash].js'
     },
     mode: 'development',
     module: {
