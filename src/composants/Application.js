@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import Formulaire from './Formulaire';
 import Musicien from './Musicien';
 import Entete from './Entete';
-import BasDePage from './BasDePage';
 import listeOrchestrale from './listeOrchestrale';
 import Trombinoscope from './Trombinoscope';
 
@@ -16,7 +15,8 @@ class Application extends Component {
         this.state = {
             liste: null,
             abbreviation: '',
-            libelle: ''
+            libelle: '',
+            nombre: null
         
         }
     }
@@ -32,7 +32,7 @@ class Application extends Component {
 
     communicationFormulaireApplication = (donnees, abbreviation, libelle)  => {
         if(donnees){
-            this.setState({liste: donnees, abbreviation: abbreviation, libelle: libelle});
+            this.setState({liste: donnees, abbreviation: abbreviation, libelle: libelle, nombre: donnees.length});
         }
     }
 

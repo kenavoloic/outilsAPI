@@ -13,9 +13,8 @@ Le format du nom du fichier est [abbreviation]_[seed]_[nombre].json
 
 ## À faire
 
-Rendre le menu déroulant [scrollable].
-Mise en forme du formulaire.
-Couleurs.
+Boîtes-à-cocher et tri des données.
 
 
-
+# Technologies
+React.JS, Webpack, Less, Date-fns
