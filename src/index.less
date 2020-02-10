@@ -1,14 +1,22 @@
 // définitions constantes
 @import (css) url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import (css) url('https://fonts.googleapis.com/css?family=Bree+Serif');
 
 @noir: #252525;
-@gris: #cecece;//@878787;
+@gris: #cecece;
 @blanc: #f0f0f0;
 
-@gizon:#afbefa;
-@emakume:#faafbe;
+//@gizon: #2346f0;//#afbefa;
+//@emakume:#f023ea;//#faafbe;
+//@taux: 55%;
+//@bleu: lighten(desaturate(#2346f0, @taux),10%);
+//@rose: lighten(desaturate(#f023ea, @taux), 10%);
 
-@bodyFond: #008888;//@blanc; 
+@bleu: #afbefa;
+@rose: #faafbe;
+
+@teinte: #008888;
+@bodyFond: @teinte;
 @bodyCouleur: @noir; 
 @couleurOutline: @gris;
 @active: @noir;
@@ -20,6 +28,20 @@
 @bordureRayon:5px;
 @boiteOmbre: 0px 4px 6px 0px rgba(0,0,0,0.25);
 @hauteurElement: 3em;
+
+@txAssombrissement: 10%;
+@txEclaircissement: 10%;
+@txSaturation: 15%;
+@txDesaturation: 50%;
+@sombre: darken(@teinte, @txAssombrissement);
+@clair: lighten(@teinte, @txEclaircissement);
+@sature: saturate(@teinte, @txSaturation);
+@desature: desaturate(@teinte, @txDesaturation);
+@sombreSature: darken(saturate(@teinte, @txSaturation), @txAssombrissement);
+@clairSature: lighten(saturate(@teinte, @txSaturation), @txEclaircissement);
+@sombreDesature: darken(saturate(@teinte, @txDesaturation), @txAssombrissement);
+@claireDesature:lighten(saturate(@teinte, @txDesaturation), @txEclaircissement);
+
 
 *, *::before, *::after {
     margin:0;
@@ -42,7 +64,7 @@ body {
     display:flex;
     justify-content:center;
     align-items:center;
-    background-color: lighten(@bodyFond, 5%);
+    background-color: @bodyFond;
 
 
     & > * {
@@ -59,8 +81,7 @@ body {
     padding:0;
     column-gap:20px;
     border-radius:5px;
-    //background-color: @blanc;
-    border:2px solid @blanc; //@noir;
+    border:2px solid @blanc;
     box-shadow: @boiteOmbre;
     height: @hauteurElement;
     line-height:2;
@@ -68,17 +89,14 @@ body {
     input {
         font:inherit;
         text-align:center;
-        padding:0;// 5px 0;
-        margin:0;// 0 0 auto;
+        padding:0;
+        margin:0;
         border: 1px solid @noir;
-        //border-radius: 0 5px 0 3px;
         border-radius-top-right:5px;
         border-radius-bottom-right:5px;
-        //border: none;
         background-color: @blanc;
         align-self:center;
         height: 100%;
-        //justify-self:stretch;
     }
 
     label {
@@ -87,10 +105,9 @@ body {
         padding:0 5px 0;
         margin:0;
         color: @blanc;
-        background-color: inherit;//@gris;//@blanc;
+        background-color: inherit;
         border:none;
         align-self:center;
-        //justify-self:stretch;
     }
 }
 
@@ -103,15 +120,15 @@ button {
     text-align:center;
     height:3em;
     color: @blanc;
-    border:3px solid @blanc;//@noir;
+    border:3px solid @blanc;
     border-radius:5px;
     box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.25);
-    background-color: @bodyFond;// @blanc;
+    background-color: @bodyFond;
 
     &:disabled,
     &[disabled] {
         color: @blanc;
-        border:2px solid @blanc;//@desactivee; 
+        border:2px solid @blanc;
         background: @desactivee;
     }
 }
@@ -135,11 +152,10 @@ nav.barre {
     padding:15px 15px;    
     display:flex;
     justify-content: space-between;
+    border-bottom:3px double @blanc;
 }
 
 form.enteteFormulaire {
-    //grid-column:1/13;
-
     min-width: 80vw;
     display:flex;
     flex-direction: row;
@@ -154,10 +170,10 @@ details.selecteur {
     border:2px solid @blanc;
     border-radius: 4px;
     position:relative;
-    color: @blanc; //@noir;
+    color: @blanc; 
     height:3em;
     line-height:2;
-    background-color: inherit;//@blanc;
+    background-color: inherit;
     min-width:14em;
     box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.25);
     outline-color: @couleurOutline;
@@ -172,12 +188,10 @@ details.selecteur {
 
     & > summary {
         cursor: pointer;
-        padding: 6px 12px;
-        background: inherit;//lighten(@bodyFond, 15%);
+        padding: 5px 12px;
+        background: inherit;
         list-style:none;
         border-radius:4px;
-        //border: 2px solid @noir;
-        padding:4px;
         margin:0;
     }
 
@@ -212,11 +226,10 @@ details.selecteur {
 & > summary::after {
     content: "\00229a";
     font-size:2em;
-    color: inherit;//@blanc; //saturate(@bodyFond, 30%);
+    color: inherit;
     position: absolute;
     top: calc(50%);
     right: 12px;
-    //transform: translateY(-50%) rotate(90deg);
     transform: translateY(-50%); 
     pointer-events:none;
 }
@@ -229,113 +242,88 @@ details.selecteur {
     position: absolute;
     display: flex;
     flex-direction: column;
-    padding: 0 1em 0;
+    padding: 0 1em 1em;
     box-shadow: @boiteOmbre;
     max-height: 90vh;
     overflow-y: scroll;
 }   
 }
 
-
 details.detailsGroupe {
     display: inline-block;
-    border: none;
-    background-color: @blanc;
-    min-width:9.85em;
+    color: @noir;
+    background: @blanc;
     padding:0;
     margin:0;
+    cursor: pointer;
+    min-width:9.85em;
     position: relative;
+    margin-top:1.25em;
+    border-radius: 8px;
 
-
-    &[open]{
-        color: @noir;
-        background-color:@blanc;
-    }
-/*
-    &  summary.choix::-webkit-details-marker {
-        display:none;
+    &:active {
+        background: @bodyFond;
     }
 
-    &  summary.choix::after {
-        content: "\00229a";
-        font-size: 1.5em;
-        color: @bodyFond;
-        position: absolute;
-        top: calc(50%);
-        right: 12px;
-        transform: translateY(-50%);
-        pointer-events: nones;
-
+    & + & {
+        margin-top:8px;
     }
 
-    &[open]  summary.choix::after {
-        content: "\00229b";
-        position: absolute;
-        right: 12px;
-        top: calc(50%);
-        transform: translateY(-50%);
-        
+    & summary::-webkit-details-marker {
+        display: none;
     }
 
-
-*/
-
-    &  summary.choix {
-        color:@noir;
+    & summary {
+        color: @blanc;
+        background: lighten(@bodyFond, 5%);
+        position:relative;
         user-select:none;
-        cursor:default;
-        padding: 5px 0px 5px 5px;
-        border:none;
+        cursor: default;
         list-style:none;
+        width: 100%;
+        padding:0 10px;
     }
 
-    &  summary.choix span {
-        color: @noir;
+    &[open] summary::after{
+        content: "\00229a";
     }
 
-    &  > ul {
-        display:inline-table;
-        //display:flex;
-        //flex-direction: column;
-        //position: absolute;
-        //list-style:none;
-        border-color: @blanc; 
-        //border-radius-top-right:10px;
-        //border-radius-bottom-right:10px;
-        background: @blanc;
-        width:100%;
-        margin:0;
-        padding:0 5px 0 10px;
-        outline-color: @couleurOutline;
-        min-height: 2em;
-        //max-height: min-content;
-        //overflow-y: auto;        
-    }
-
-    &   > ul li.selecteurItem {
+    & summary::after{
+        content: "\00229b";
         display:block;
-        font-size:0.9em;
-        line-height:1.5;
-        color: @gris; 
-        //margin-top:5px;
-        //margin-bottom:5px;
-        padding:0 0 0 10px;
-        margin:0;
-        //padding: 5px 10px 3px 5px;
-        //border-left: 2px solid @bodyFond;
-        //border-radius-top-right:10px;
-        //border-radius-bottom-right:10px;
-        //border:2px solid @noir;
-        background-color: @blanc;
-        //position:absolute;
+        font-size:1.75em;
+        color: @blanc;
+        position: absolute;
+        padding: 0 5px;
+        top: calc(50%);
+        right: 0;
+        transform: translateY(-50%);
     }
 
-    &   > ul li.selecteurItem:hover {
+    & summary:selection {
+        background-color: lighten(@bodyFond, 2%);
+    }
+
+    & ul {
+        list-style-type:none;
+        margin-top:5px;
+        border-radius:8px;
+    }
+
+    & ul > li {
+        font-size: 0.9em;
+        line-height:1.5;
         color: @noir;
-        //background-color: lighten(@bodyFond,5%);//@blanc;
-        border-bottom: 2px solid lighten(@bodyFond,5%);
+        margin:0;
+        padding:0 0 0 10px;
+    }
+
+    &   > ul li:hover {
+        color: @blanc;
+        background: @clairSature;
         cursor:pointer;
     }
+
 }
 
 button#enregistrer {
@@ -361,8 +349,8 @@ button#enregistrer[disabled] {
 
 article.musicien {
 
-    @gizon:#afbefa;
-    @emakume:#faafbe;
+    @gizon:@bleu;
+    @emakume:@rose; 
 
     @articleCouleurFond:@blanc;
     @articleCouleurBordure:#888888;
@@ -372,7 +360,8 @@ article.musicien {
     @articleH1Couleur:@blanc;
     @articleH1LineHeight:2;
     @articleLiBeforeCouleur:#505050;
-    @articleLiFontFamily: sans-serif;
+    @articleH1FontFamily: 'Bree Serif', serif;
+    @articleLiFontFamily: 'Josefin Sans', sans-serif;
     @articleLiFontSize: 0.9em;
     @articleLiCouleur: inherit;
     @articleLiFond:#dddddd;
@@ -399,6 +388,7 @@ article.musicien {
 
     h1 {
         font-size:1em;
+        font-family: @articleH1FontFamily;
         margin:0;
         padding:0.75em 0;
         color: @articleH1Couleur;
