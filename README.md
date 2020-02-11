@@ -18,3 +18,7 @@ Boîtes-à-cocher et tri des données.
 
 # Technologies
 React.JS, Webpack, Less, Date-fns
+
+# Problème
+
+Webpack, problème de dépendances : **Less** : **peer dependency* ou **dependency** ?

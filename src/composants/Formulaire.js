@@ -3,11 +3,20 @@ import ReactDOM from 'react-dom';
 
 import Choix from './Choix';
 import listeOrchestrale from './listeOrchestrale';
+
+import ChoixNationalites from './ChoixNationalites';
+import ListePays from './ListePays';
+
+
 import Trombinoscope from './Trombinoscope';
 
 class Formulaire extends React.Component {
     constructor(props){
         super(props);
+
+        this.listePays = new ListePays().getListeEU();
+        console.log(this.listePays);
+        
         this.state = {
             abbreviation: '',
             libelle: '',
@@ -19,7 +28,8 @@ class Formulaire extends React.Component {
             url: 'https://randomuser.me/api/',
             nationalites: 'nat=au,br,ca,ch,de,dk,es,fi,fr,gb,ie,no,nl,nz,us',
             champsExclus: 'exc=login,registered',
-            boutonSauvegarde:false
+            boutonSauvegarde:false,
+            listePays: this.listePays
         }
     }
 
@@ -48,7 +58,7 @@ class Formulaire extends React.Component {
 
     filtreRandomUser = x => {
         return {
-            genre: x.gender,
+            genre: (x.gender.toLowerCase() === "male") ? 'h' : 'f',
             nom: x.name.last,
             prenom: x.name.first,
             titre: x.name.title,
@@ -108,7 +118,10 @@ class Formulaire extends React.Component {
             <div className="labelInput">
             <label htmlFor="seed">Seed</label>
             <input name="seed" type="text" minLength="1" maxLength="32" placeholder="seed" onChange={this.changement} value={this.state.seed} required />
+
             </div>
+
+            <ChoixNationalites data={this.state.listePays} />
             
             <button type="submit" disabled={!requetePossible}>Envoi</button>
             

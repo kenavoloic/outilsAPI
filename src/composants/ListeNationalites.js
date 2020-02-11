@@ -1,4 +1,4 @@
-const listeNationalites = function(){
+const ListeNationalites = function(){
 
     const liste = {
         au: {nationalite: 'AU', booleen: false},
@@ -53,9 +53,13 @@ const listeNationalites = function(){
 
 };
 
-export default listeNationalites;
+export default ListeNationalites;
 
-//let a = new listeNationalites();
+//let a = new ListeNationalites();
 //console.log('liste : ', a.getListe(), 'listeEU ', a.getListeEU(), 'listeNonEU ', a.getListeNonEU());
 //console.log(a.getListeAmeriques());
-//console.log(a.getListe());
+///console.log(a.getListe());
+//console.log(a.getListeEU());
+//let clefs = Object.keys(a.getListeEU());
+//let valeurs = Object.values(a.getListeEU());
+//console.log(valeurs);

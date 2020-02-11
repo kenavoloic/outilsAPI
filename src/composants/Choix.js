@@ -52,9 +52,6 @@ class Choix extends React.Component {
         this.setState({ouvert: false, abbreviation: abbreviation, libelle: libelle}, this.props.actualisation({abbreviation: abbreviation, libelle: libelle}));
     }
 
-    // à finir : ouverture/fermeture du details
-    //ouverture = envoi =>  envoi ? 'open' : '';
-
     modificationSummary = libelle => {
         return libelle ? <summary className="actif"><span>{libelle}</span></summary> : <summary className="inactif"><span>Instruments</span></summary>;
     }
@@ -66,7 +63,6 @@ class Choix extends React.Component {
 
         return (
             <details className="selecteur" key="selecteur"  name="instrument" >
-            {/*<summary>{this.state.libelle ? this.state.libelle : 'Instruments'}</summary>*/}
             {this.modificationSummary(this.state.libelle)}
             <article className="cadreSelecteur">
             {this.creationSelecteur(this.state.options)}
