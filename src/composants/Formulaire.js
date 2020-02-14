@@ -7,6 +7,7 @@ import listeOrchestrale from './listeOrchestrale';
 import ChoixNationalites from './ChoixNationalites';
 import ListePays from './ListePays';
 
+import Genres from './Genres';
 
 import Trombinoscope from './Trombinoscope';
 
@@ -18,14 +19,13 @@ class Formulaire extends React.Component {
             abbreviation: '',
             libelle: '',
             nombrePostulants: 4,
-            seed: 'LouisonBobet',
+            seed: 'MauriceGarin',
             telechargementEnCours: false,
             liste: [],
             erreur: '',
-            url: 'https://randomuser.me/api/',
+            url: 'https://randomuser.me/api/?',
             nationalites: 'nat=de,es,fr,ie,nl',
-            //nationalites: null,
-            //parametresNationalitesValides: false,
+            genres: 'gender=female,male',
             champsExclus: 'exc=login,registered',
             boutonSauvegarde:false,
             listePays: new ListePays().getListeEU()
@@ -47,8 +47,11 @@ class Formulaire extends React.Component {
     requeteNationalites = envoi => {
         if(envoi != this.state.nationalites){
             this.setState({nationalites: `nat=${envoi}`});
-            //console.log(envoi);
         }
+    }
+
+    requeteGenres = envoi => {
+            this.setState({genres: `gender=${envoi}`})
     }
 
     componentDidUpdate = () => {
@@ -57,8 +60,11 @@ class Formulaire extends React.Component {
 
     getLien = () => {
         let resultats = `results=${this.state.nombrePostulants}`;
-        let alea = `?seed=${this.state.seed}`;
-        let lien = `${this.state.url}${alea}&${resultats}&${this.state.champsExclus}&${this.state.nationalites}`;
+        let alea = `seed=${this.state.seed}`;
+        let lien = `${this.state.url}${alea}&${resultats}&${this.state.champsExclus}&${this.state.nationalites}&${this.state.genres}`;
+        //let lien = `${this.state.url}${alea}&${resultats}&${this.state.genres}&${this.state.nationalites}`;
+        //let lien = `${this.state.url}${alea}&${resultats}&${this.state.genres}`;
+        //console.log(lien);
         return lien;    
     }
 
@@ -130,6 +136,8 @@ class Formulaire extends React.Component {
             </div>
 
             <ChoixNationalites data={this.state.listePays} fonction={this.requeteNationalites} required/>
+
+            <Genres fonction={this.requeteGenres} />
             
             <button type="submit" disabled={!requetePossible}>Envoi</button>
 

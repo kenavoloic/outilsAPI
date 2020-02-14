@@ -394,6 +394,162 @@ details.pays{
     & input, label {
         font-size:0.5em;
     }
+    
+}
+
+details.genres {
+    display: inline-block;
+    color: @blanc;
+    background: @bodyFond;
+    border: 2px solid @blanc;
+    min-width: 9em;
+    line-height:2;
+    height:3em;
+    padding:0;
+    margin:0;
+    cursor: pointer;
+    position: relative;
+    border-radius:8px;
+    outline-color: @couleurOutline;
+
+    & summary::-webkit-details-marker {
+        display: none;
+    }
+
+    & summary {
+        color: @blanc;
+        background: inherit;
+        position: relative;
+        user-select: none;
+        cursor: default;
+        list-style: none;
+        width: 100%;
+        padding: 5px 12px;
+    }
+
+    &[open] summary::after{
+        content: "\00229b";
+    }
+
+    & summary::after {
+        content: "\00229a";
+        display: block;
+        font-size: 1.75em;
+        color: @blanc;
+        position: absolute;
+        padding: 0 5px;
+        top: calc(50%);
+        right: 0;
+        transform: translateY(-50%);
+    }
+
+    & article.femmeHomme {
+        position: absolute;
+        background: @bodyFond;
+        width: 100%;
+        border: 2px solid @blanc;
+        border-radius: 4px;
+        margin: .75em 0 0 0;
+        padding: 10px;
+        
+        //display: grid;
+        //grid-template-rows: repeat(3, 1fr);
+        display: flex;
+        flex-direction: column;
+    }
+
+    & section {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    input[type="checkbox"] {
+        margin-right:1em;
+        font-size:1.2em;
+    }
+/*
+& section {
+    font-size: 1em;
+    line-height:1.2;
+}
+
+& section label {
+    cursor: pointer;
+}
+
+& section label:before {
+    display: inline-block;
+    width: 20px;
+    margin-right: 5px;
+    content: "\00a0";
+    text-align: center;
+    background: inherit;
+}
+
+& section label:hover:before {
+    background: red;
+}
+
+& section input[type="checkbox"] {
+    display: none;
+}
+& section input:checked ~ label:before {
+    content: "\002713";
+}
+*/
+/*
+    [type="checkbox"]:not(checked),
+    [type="checkbox"]:checked {
+        position:absolute;
+        left:-9999px;
+    }
+
+    [type="checkbox"]:not(:checked) + label,
+    [type="checkbox"]:checked + label {
+        position: relative;
+        padding-left: 1.95em;
+        cursor: pointer;
+    }
+
+    [type="checkbox"]:not(:checked) + label:before,
+    [type="checkbox"]:checked + label:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1em;
+        height: 1em;
+        border: 2px solid @blanc;
+        background: inherit;
+        border-radius: 4px;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+    }
+
+    [type="checkbox"]:not(:checked) + label:after,
+    [type="checkbox"]:checked + label:after {
+        content: "\002713";
+        position:absolute;
+        top: -.25em;
+        left: 0;
+        font-size: 1.7em;
+        line-height:1;
+        color: @noir;
+    }
+
+    [type="checkbox"]:not(:checked) + label:after{
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    [type="checkbox"]:checked + label:after{
+        opacity: 1;
+        transform: scale(1);
+    }
+
+*/   
+
+
+
 }
 
 

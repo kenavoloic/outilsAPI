@@ -12,27 +12,21 @@ class Boite extends React.Component {
     }
 
     alternateur = e => {
-        //this.setState(precedent => ({selectionne: precedent
-        //this.setState({selectionne: !e.target.selectionne});
         this.setState({selectionne: !this.state.selectionne});
         this.props.fonction(this.props.numero, e);
-        //this.setState( precedent => 
-        //console.log(e.target.name, e.target.checked);
-        //this.props.fonction(this.props.numero, e);
     }
 
     render(){            
         return (
-            <React.Fragment>
+            <section>
             <label htmlFor={this.state.clef}>{this.state.nationalite}</label>
             <input type="checkbox"
             name={this.state.clef}
             key={this.state.clef}
             checked={this.state.selectionne}
-            //value = {this.state.selectionne}
             onChange={this.alternateur}
             />
-            </React.Fragment>
+            </section>
         );
     }
 }

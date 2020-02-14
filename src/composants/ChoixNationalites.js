@@ -21,7 +21,7 @@ class ChoixNationalites extends React.Component {
     }
 
     boitesAcocher = (liste, fonction) => {
-        return Array.from(liste).map((x, numero) => <Boite data={x} fonction={fonction} numero={numero} />);       
+        return Array.from(liste).map((x, numero) => <Boite data={x} fonction={fonction} numero={numero} key={numero} />);       
     }
 
     changementBoite = (numero, e) => {
@@ -31,21 +31,12 @@ class ChoixNationalites extends React.Component {
         //this.setState({ element}, ()=> this.setState({requete: this.state.liste.filter(x => x.booleen === true).map(x => x.clef).join(","), nouvelleRequete: true}));
         this.setState({ element},  ()=> this.props.fonction(this.state.liste.filter(x => x.booleen === true).map(x => x.clef).join(",")), () => this.setState({nouvelleRequete: true}));
     }
-/*
-    requete = liste => {
-        let tri = liste.filter(x => x.booleen === true).map(x => x.clef).join(",");
-        //let retour = tri.map(x => {
-        this.setState({requete: tri});
-        //this.setState({requete: tri}, () => this.setState({requete:         );
-        console.log(tri);
-    }
-*/
 
     render(){
         return (
-            <details className="pays">
-            <summary>Nationalités</summary>
-            <article className="nations">
+            <details className="pays" key="pays">
+            <summary key="sommaire">Nationalités</summary>
+            <article className="nations" key="nations">
             {this.boitesAcocher(this.state.liste, this.changementBoite)}
             </article>
             </details>
