@@ -13,9 +13,6 @@ import Trombinoscope from './Trombinoscope';
 class Formulaire extends React.Component {
     constructor(props){
         super(props);
-
-        this.listePays = new ListePays().getListeEU();
-        console.log(this.listePays);
         
         this.state = {
             abbreviation: '',
@@ -26,10 +23,12 @@ class Formulaire extends React.Component {
             liste: [],
             erreur: '',
             url: 'https://randomuser.me/api/',
-            nationalites: 'nat=au,br,ca,ch,de,dk,es,fi,fr,gb,ie,no,nl,nz,us',
+            nationalites: 'nat=de,es,fr,ie,nl',
+            //nationalites: null,
+            //parametresNationalitesValides: false,
             champsExclus: 'exc=login,registered',
             boutonSauvegarde:false,
-            listePays: this.listePays
+            listePays: new ListePays().getListeEU()
         }
     }
 
@@ -43,6 +42,13 @@ class Formulaire extends React.Component {
 
     changementInstrument = e => {
         this.setState({abbreviation: e.abbreviation, libelle: e.libelle});
+    }
+
+    requeteNationalites = envoi => {
+        if(envoi != this.state.nationalites){
+            this.setState({nationalites: `nat=${envoi}`});
+            //console.log(envoi);
+        }
     }
 
     componentDidUpdate = () => {
@@ -108,24 +114,27 @@ class Formulaire extends React.Component {
 
         return (
             <nav className="barre">
-            <form onSubmit={this.obtenirDonnees} className={this.props.nomClasse}>
+
+            <form className="enteteFormulaire" onSubmit={this.obtenirDonnees} className={this.props.nomClasse}>
 
             <Choix data={listeOrchestrale} name="instrument" actualisation={this.changementInstrument} required />
-<div className="labelInput">
+
+            <div className="labelInput">
             <label htmlFor="nombre">Nombre</label>
             <input name="nombrePostulants" type="number" min="1" max="100"  size="6" placeholder="Nombre" onChange={this.changement} value={this.state.nombrePostulants} required />
-</div>
+            </div>
+
             <div className="labelInput">
             <label htmlFor="seed">Seed</label>
             <input name="seed" type="text" minLength="1" maxLength="32" placeholder="seed" onChange={this.changement} value={this.state.seed} required />
-
             </div>
 
-            <ChoixNationalites data={this.state.listePays} />
+            <ChoixNationalites data={this.state.listePays} fonction={this.requeteNationalites} required/>
             
             <button type="submit" disabled={!requetePossible}>Envoi</button>
-            
+
             </form>
+
             <button id="enregistrer" onClick={this.sauvegarderJson} disabled={!sauvegardePossible}>Sauver</button>
             </nav>
         );

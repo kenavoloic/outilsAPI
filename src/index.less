@@ -338,8 +338,8 @@ details.pays{
     cursor: pointer;
     min-width: 9em;
     position: relative;
-    margin-top:1.25em;
     border-radius:8px;
+    outline-color: @couleurOutline;
 
     & summary::-webkit-details-marker {
         display:none;
@@ -347,7 +347,7 @@ details.pays{
 
     & summary {
         color: @blanc;
-        background: inherit;//lighten(@bodyFond, 5%);
+        background: inherit;
         position: relative;
         user-select: none;
         cursor: default;
@@ -454,7 +454,7 @@ article.musicien {
         padding:0;
         margin:0;
         box-shadow: -1px 0px 0px rgba(0,0,0,0.2);
-        flex:1;
+        flex: 0 0 auto;
     }
 
     h1 {

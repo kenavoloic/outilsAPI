@@ -21,4 +21,6 @@ React.JS, Webpack, Less, Date-fns
 
 # Problème
 
+Considérer le cas où aucune nationalité n'est choisie.
+
 Webpack, problème de dépendances : **Less** : **peer dependency* ou **dependency** ?
