@@ -12,13 +12,32 @@ class ChoixNationalites extends React.Component {
             return {clef: clef, booleen: booleen};
         });
 
+      console.log(props.listes);
+
         this.state = {
             liste: props.data,
             booleens: this.booleens,
             requete: null,
-            nouvelleRequete: false
+          nouvelleRequete: false,
+	  toutes: props.listes
         }
     }
+
+  selection = listes => {
+    //console.log(Object.keys(listes));
+    //console.log(Object.values(listes));
+/*   
+    Object.values(listes).forEach(x => {
+      console.log(x[0]);
+    });
+*/
+    let retour = listes.map(x => {
+      return (
+	<option key={x[0]} value={x[0]}>{x[0]}</option>
+      );
+    });
+    return retour;
+  }
 
     boitesAcocher = (liste, fonction) => {
         return Array.from(liste).map((x, numero) => <Boite data={x} fonction={fonction} numero={numero} key={numero} />);       
@@ -35,7 +54,7 @@ class ChoixNationalites extends React.Component {
     render(){
         return (
             <details className="pays" key="pays">
-            <summary key="sommaire">Nationalités</summary>
+          <summary key="sommaire">Nationalités</summary>
             <article className="nations" key="nations">
             {this.boitesAcocher(this.state.liste, this.changementBoite)}
             </article>

@@ -13,7 +13,11 @@ import Trombinoscope from './Trombinoscope';
 
 class Formulaire extends React.Component {
     constructor(props){
-        super(props);
+      super(props);
+
+      /* let xyz = new ListePays().toutes();
+       * console.log(xyz.eu); */
+      
         
         this.state = {
             abbreviation: '',
@@ -28,7 +32,8 @@ class Formulaire extends React.Component {
             genres: 'gender=female,male',
             champsExclus: 'exc=login,registered',
             boutonSauvegarde:false,
-            listePays: new ListePays().getListeEU()
+          listePays: new ListePays().getListeEU(),
+	  toutes: new ListePays().toutes()
         }
     }
 
@@ -135,16 +140,20 @@ class Formulaire extends React.Component {
             <input name="seed" type="text" minLength="1" maxLength="32" placeholder="seed" onChange={this.changement} value={this.state.seed} required />
             </div>
 
-            <ChoixNationalites data={this.state.listePays} fonction={this.requeteNationalites} required/>
+          <ChoixNationalites
+	  //data={this.state.toutes}
+	  data={this.state.listePays}
+	  listes={this.state.toutes}
+	  fonction={this.requeteNationalites} required/>
 
-            <Genres fonction={this.requeteGenres} />
-            
-            <button type="submit" disabled={!requetePossible}>Envoi</button>
+          <Genres fonction={this.requeteGenres} />
+          
+          <button type="submit" disabled={!requetePossible}>Envoi</button>
 
-            </form>
+          </form>
 
-            <button id="enregistrer" onClick={this.sauvegarderJson} disabled={!sauvegardePossible}>Sauver</button>
-            </nav>
+          <button id="enregistrer" onClick={this.sauvegarderJson} disabled={!sauvegardePossible}>Sauver</button>
+          </nav>
         );
     }
 

@@ -26,17 +26,20 @@ class Genres extends React.Component {
 
 
     affichage = (liste, fonction) => {
-        return liste.map((x,numero) => (
-            <section key={x.clef}>
-            <input type="checkbox"
-            numero= {numero}
-            name={x.clef}
-            checked={x.booleen}
-            onChange={(e) => fonction(numero, e)}
-            />
-            <label htmlFor={x.clef}>{x.genre}</label>
-            </section>
-        ));
+      return liste.map((x,numero) => (
+        <section key={x.clef}>
+
+        <input type="checkbox"
+        numero= {numero}
+        name={x.clef}
+        checked={x.booleen}
+        onChange={(e) => fonction(numero, e)}
+        />
+	
+        <label htmlFor={x.clef}>{x.genre}</label>
+	
+        </section>
+      ));
     }
 
     render(){

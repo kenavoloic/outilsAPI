@@ -19,14 +19,16 @@ class Boite extends React.Component {
     render(){            
         return (
             <section>
-            <label htmlFor={this.state.clef}>{this.state.nationalite}</label>
+
             <input type="checkbox"
             name={this.state.clef}
             key={this.state.clef}
             checked={this.state.selectionne}
             onChange={this.alternateur}
-            />
-            </section>
+          />
+
+	  <label htmlFor={this.state.clef}>{this.state.nationalite}</label>
+          </section>
         );
     }
 }

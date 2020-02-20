@@ -67,9 +67,19 @@ const ListePays = function(){
     const getListeEU = () => listeEU;
     const getListeNonEU = () => listeNonEU;
     const getListeAmeriques = () => listeAmeriques;
-    const getListeEurope = () => listeEurope;
+  const getListeEurope = () => listeEurope;
 
-    return {getListe, getListeEU, getListeNonEU, getListeAmeriques, getListeEurope};
+  const toutes = () => {
+    return {
+      'complete': ['Tous', getListe()],
+      'eu': ['EU', getListeEU()],
+      'noneu': ['Non-EU',getListeNonEU()],
+      'ameriques': ['Amériques', getListeAmeriques()],
+      'europe': ['Europe', getListeEurope()]      
+    };
+  };
+
+  return {getListe, getListeEU, getListeNonEU, getListeAmeriques, getListeEurope, toutes};
 
 };
 
