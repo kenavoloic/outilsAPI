@@ -8,3 +8,4 @@ import Application from './composants/Application.js';
 const sortie = document.getElementById('racine');
 ReactDOM.render(<Application />, sortie);
 
+

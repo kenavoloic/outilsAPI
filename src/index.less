@@ -1,33 +1,26 @@
-// définitions constantes
+//Fontes
 @import (css) url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 @import (css) url('https://fonts.googleapis.com/css?family=Bree+Serif');
-
+//Couleurs
 @noir: #252525;
 @gris: #cecece;
 @blanc: #f0f0f0;
 
-//@gizon: #2346f0;//#afbefa;
-//@emakume:#f023ea;//#faafbe;
-//@taux: 55%;
-//@bleu: lighten(desaturate(#2346f0, @taux),10%);
-//@rose: lighten(desaturate(#f023ea, @taux), 10%);
-
 @bleu: #afbefa;
 @rose: #faafbe;
+@rouge: #fa4465;
 
-@teinte: #008888;
+@teinte:  #008888;
+
 @bodyFond: @teinte;
-@bodyCouleur: @noir; 
-@couleurOutline: @gris;
+@bodyCouleur: @blanc;
+
 @active: @noir;
 @activee: @active;
 @desactive: @gris;
 @desactivee: @desactive;
 @couleurDesactivee: @blanc;
 @fondDesactive: @gris;
-@bordureRayon:5px;
-@boiteOmbre: 0px 4px 6px 0px rgba(0,0,0,0.25);
-@hauteurElement: 3em;
 
 @txAssombrissement: 10%;
 @txEclaircissement: 10%;
@@ -43,6 +36,20 @@
 @claireDesature:lighten(saturate(@teinte, @txDesaturation), @txEclaircissement);
 
 
+@margeDetails: 0.75em;
+@ouvert: "\00229b";
+@ferme: "\00229a";
+@marque: "\002713";
+@marqueTaille: 2em;
+@rotation: (-90deg);
+@taille: 1em;
+@ratioTaille: 1.1;
+
+@bordureRayon:5px;
+@boiteOmbre: 0px 4px 6px 0px darken(@noir,25%);
+@texteOmbre: 1px -1px 1px darken(@noir, 10%);
+@hauteurElement: 3em;
+
 *, *::before, *::after {
     margin:0;
     padding:0;
@@ -55,7 +62,8 @@ html {
 }
 
 body {
-    font-size:100;
+    height: 125vh;
+    font-size:100%;
     margin:0.625em;
     background-color: @bodyFond;
 }
@@ -65,52 +73,38 @@ body {
     justify-content:center;
     align-items:center;
     background-color: @bodyFond;
-
-
-    & > * {
-        outline-color: @couleurOutline;
-    }
 }
 
-.labelInput {
-    display:flex;
-    flex-direction:row;
-    justify-content: space-around;
-    align-items:center;
-    margin:0;
-    padding:0;
-    column-gap:20px;
-    border-radius:5px;
-    border:2px solid @blanc;
-    box-shadow: @boiteOmbre;
-    height: @hauteurElement;
+header.entete {
+    font-family:sans-serif;
+    font-size:1em;
+    z-index:1;
+    width:100vw;
+
+    position:fixed;
+    top:0;
+    left:0;
     line-height:2;
+    display:grid;
+    grid-template-columns: 1.5% 85% 1.5% 10% 2%;
 
-    input {
-        font:inherit;
-        text-align:center;
-        padding:0;
-        margin:0;
-        border: 1px solid @noir;
-        border-radius-top-right:5px;
-        border-radius-bottom-right:5px;
-        background-color: @blanc;
-        align-self:center;
-        height: 100%;
-    }
-
-    label {
-        font:inherit;
-        text-align:center;
-        padding:0 5px 0;
-        margin:0;
-        color: @blanc;
-        background-color: inherit;
-        border:none;
-        align-self:center;
-    }
 }
 
+form.enteteFormulaire {
+
+    grid-column: 2;
+
+    //max-width: 80vw;
+
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items:center;
+
+    //display:grid;
+    font-size:100%;
+}
 
 button {
     font:inherit;
@@ -122,318 +116,180 @@ button {
     color: @blanc;
     border:3px solid @blanc;
     border-radius:5px;
-    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.25);
-    background-color: @bodyFond;
+    box-shadow: @boiteOmbre;
+    text-shadow: @texteOmbre;
+    background-color: lighten(@bodyFond, 5%);
 
     &:disabled,
     &[disabled] {
-        color: @blanc;
-        border:2px solid @blanc;
-        background: @desactivee;
+	color: @blanc;
+	border:2px solid @blanc;
+	background: @desactivee;
     }
 }
 
-
-
-header.entete {
-    font-family:sans-serif;
-    font-size:1em;
-    z-index:1;
-    width:100vw;
-    position:fixed;
-    top:0;
-    left:0;
-    line-height:2;
+button#enregistrer {
+    grid-column: 4;
 }
 
-nav.barre {
-    background-color: @bodyFond;
-    width:100%;
-    padding:15px 15px;    
-    display:flex;
-    justify-content: space-between;
-    border-bottom:3px double @blanc;
-}
-
-form.enteteFormulaire {
-    min-width: 80vw;
+.labelInput {
     display:flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items:center;
-    font-size:100%;
-}
-
-details.selecteur {
-    font-size:100%;
-    display: inline-block;
-    border:2px solid @blanc;
-    border-radius: 4px;
-    position:relative;
-    color: @blanc; 
-    height:3em;
+    border-radius:5px;
+    border: 2px solid @blanc;
+    margin:0;
+    padding:0;
     line-height:2;
-    background-color: inherit;
-    min-width:14em;
-    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.25);
-    outline-color: @couleurOutline;
+    height:@hauteurElement;
+    box-shadow: @boiteOmbre;
 
-    & > * {
-        outline: #202020;
+    input {
+	font:inherit;
+	text-align:center;
+	padding:0;
+	margin:0;
+	border: 1px solid @noir;
+	border-radius-top-right: 5px;
+	border-radius-bottom-right: 5px;
+	background-color: @blanc;
+	height: 100%;	
     }
 
-    &[open] {
-        border-radius: 3px 3px 0 0;
+    input[type="number"]{
+	width: 4em;
+	text-align:center;
+    }
+
+    input[type="text"]{
+	width: 8em;
+	text-align:center;
+    }
+
+    label {
+	font:inherit;
+	text-align:center;
+	color:@blanc;
+	background-color: inherit;
+	border:none;
+	margin:0;
+	padding: 0 5px 0;
+	align-self:center;
+    }
+}
+
+details.pays, details.genres {
+    display: inline-block;
+    position: relative;
+    height: @hauteurElement;
+    line-height: 2;
+
+    font-size:100%;
+    color: @blanc;
+    background-color: @bodyFond;
+    border-radius: 6px;
+    border: 2px solid @blanc; 
+
+    padding:0;
+    margin:0;
+    box-shadow: @boiteOmbre;
+    cursor: pointer;
+
+    & summary::-webkit-details-marker {
+	display:none;
     }
 
     & > summary {
-        cursor: pointer;
-        padding: 5px 12px;
-        background: inherit;
-        list-style:none;
-        border-radius:4px;
-        margin:0;
-    }
 
-    & > summary.inactif span{
-        color: @blanc;
-        background-color: inherit;
+	background-color: inherit;
 
-    }
 
-    & > summary.inactif {
-        color: @blanc;
-        background-color:@bodyFond;
-    }
-
-    & > summary.actif {
-        color: @bodyFond;
-        border-color: @noir;
-        border: 1px solid @noir;
-
-    background-color: @blanc;            
-    span {
-        color: @noir;
-    }
-}
-
- 
-
-& > summary::-webkit-details-marker {
-    display:none;
-}
-
-& > summary::after {
-    content: "\00229a";
-    font-size:2em;
-    color: inherit;
-    position: absolute;
-    top: calc(50%);
-    right: 12px;
-    transform: translateY(-50%); 
-    pointer-events:none;
-}
-
-&[open] > summary::after{
-    content: "\00229b";
-}
-
-& .cadreSelecteur {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    padding: 0 1em 1em;
-    box-shadow: @boiteOmbre;
-    max-height: 90vh;
-    overflow-y: scroll;
-}   
-}
-
-details.detailsGroupe {
-    display: inline-block;
-    color: @noir;
-    background: @blanc;
-    padding:0;
-    margin:0;
-    cursor: pointer;
-    min-width:9.85em;
-    position: relative;
-    margin-top:1.25em;
-    border-radius: 8px;
-
-    &:active {
-        background: @bodyFond;
-    }
-
-    & + & {
-        margin-top:8px;
-    }
-
-    & summary::-webkit-details-marker {
-        display: none;
-    }
-
-    & summary {
-        color: @blanc;
-        background: lighten(@bodyFond, 5%);
-        position:relative;
-        user-select:none;
-        cursor: default;
-        list-style:none;
-        width: 100%;
-        padding:0 10px;
-    }
-
-    &[open] summary::after{
-        content: "\00229a";
-    }
-
-    & summary::after{
-        content: "\00229b";
-        display:block;
-        font-size:1.75em;
-        color: @blanc;
-        position: absolute;
-        padding: 0 5px;
-        top: calc(50%);
-        right: 0;
-        transform: translateY(-50%);
-    }
-
-    & summary:selection {
-        background-color: lighten(@bodyFond, 2%);
-    }
-
-    & ul {
-        list-style-type:none;
-        margin-top:5px;
-        border-radius:8px;
-    }
-
-    & ul > li {
-        font-size: 0.9em;
-        line-height:1.5;
-        color: @noir;
-        margin:0;
-        padding:0 0 0 10px;
-    }
-
-    &   > ul li:hover {
-        color: @blanc;
-        background: @clairSature;
-        cursor:pointer;
-    }
-
-}
-
-details.pays{
-    display: inline-block;
-    color: @blanc;
-    background: @bodyFond;
-    border: 2px solid @blanc;
-    height: 3em;
-    line-height:2;
-    padding:0;
-    margin:0;
-    cursor: pointer;
-    min-width: 9em;
-    position: relative;
-    border-radius:8px;
-    outline-color: @couleurOutline;
-
-    & summary::-webkit-details-marker {
-        display:none;
-    }
-
-    & summary {
-        color: @blanc;
-        background: inherit;
-        position: relative;
-        user-select: none;
-        cursor: default;
-        list-style:none;
-        width: 100%;
-        padding: 5px 12px;
+	border-radius: 4px;
+	user-select: none;
+	list-style:none;
+	width: 100%;
+	padding: 5px 12px;
+	margin:0;
     }
 
     &[open] summary::after {
-        content: "\00229b";
+	content: @ouvert;
     }
 
     & summary::after {
-        content: "\00229a";
-        display:block;
-        font-size: 1.75em;
-        color: @blanc;
-        position: absolute;
-        padding: 0 5px;
-        top: calc(50%);
-        right: 0;
-        transform: translateY(-50%);
+	content: @ferme;
+	display:block;
+	font-size: 1.75em;
+	color:@blanc;
+	padding: 0 5px;
+	position:absolute;
+	top: calc(50%);
+	right: 0;
+	transform: translateY(-50%);
     }
+}
+
+details.pays {
+    min-width: 9em;
+    font-size: 1em;
 
     & article.nations {
-        position: absolute;
-        display: grid;
-        background: @bodyFond;
+	max-height: 80vh;
+	overflow-y: auto;
 
-        //grid-template-columns: repeat(auto-fit, minmax(40px, 50px));
-        //grid-template-columns: repeat(auto-fit, minmax(2em,3em));
-	grid-template-columns: repeat(2, 40px);
+	padding: 5px 10px;
+	margin-top: @margeDetails;
+
+	width: 100%;
+	border: 2px solid @blanc;
+	border-radius: 4px;
+
+	position: absolute;
+	display: grid;
+	background-color: @bodyFond;
+	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: repeat(6, 1fr);
-	grid-auto-flow:columns;
+	grid-auto-flow: columns;
 	grid-gap: 10px;
-	justify-items:center;
-        margin-top:.75em;
-        //padding: 30px 1em 1em;
-        padding: 5px 10px;
-        box-shadow: @boiteOmbre;
-        max-height: 80vh;
-        overflow-y: auto;
-        width: 100%;
-        border:2px solid @blanc;
-        border-radius:4px;
+
+
+	box-shadow: @boiteOmbre;
 
 	section {
-	    align-self:center;
-
+	    align-self: center;
 	    display:flex;
 	    align-items:center;
 	    justify-content:space-between;
 	    max-width:3.5em;
-	    @taille: 1.5em;
-	    @ratioTaille: 1.2;
-	    @marque: "\002713";
-	    @marqueTaille: 2.5em;
-	    @ombreTexte: 1px -1px 1px @noir;
-	    
+
 	    input[type="checkbox"]{
 		appearance:none;
 		-webkit-appearance:none;
 		-moz-appearance:none;
 
 		flex-shrink:0;
-		
+
 		position:relative;
 		width:calc(@taille*@ratioTaille);
 		height:calc(@taille*@ratioTaille);
 		border:2px solid @gris;
 		color:gris;
 		background-color: transparent;
-		//lighten(@gris, 35%);
 		cursor: pointer;
 		outline:none;
 
 		& + label {
+		    font-size:85%;
 		    flex-shrink:0;
-		    color:red;
+		    color:@rouge;
 		}
 	    }
 
 	    input[type="checkbox"]:checked::before{
 		content:@marque;
 		font-size: @marqueTaille;
-		color:red;
+		color:@rouge;
 		position:absolute;
 		top:calc(30%);
 		transform: translateY(-50%) translateX(-10%);
@@ -442,115 +298,61 @@ details.pays{
 
 	    input[type="checkbox"]:checked{
 		background-color: transparent;
-		
+
 		& + label {
 		    color: @blanc;
-		    text-shadow: @ombreTexte;
+		    text-shadow: @texteOmbre;
 		}
 	    }
 	}
 
     }
 
-    & input, label {
-        font-size:0.5em;
-    }
-    
+
 }
 
 details.genres {
-    display: inline-block;
-    color: @blanc;
-    background: @bodyFond;
-    border: 2px solid @blanc;
-    min-width: 9em;
-    line-height:2;
-    height:3em;
+    min-width: 6.5em;
     padding:0;
     margin:0;
-    cursor: pointer;
-    position: relative;
-    border-radius:8px;
-    outline-color: @couleurOutline;
 
-    @taille:1.25em;
-    @ratioTaille:1.1;
-    @bordureRayon: 4px;
-    @bordure:2px;
-    @noir: black;
-    @rouge: #ff3366;
-    @marque: "\002713";
-    @marqueTaille: @taille*2;
-    @ombreTexte: 1px 1px 1px @gris;
+    & article.femmeHomme{
+	position: absolute;
+	background-color: @bodyFond;
+	width: 100%;
+	border: 2px solid @blanc;
+	border-radius: 4px;
+	margin: .75em 0 0 0;
 
-    & summary::-webkit-details-marker {
-        display: none;
-    }
-
-    & summary {
-        color: @blanc;
-        background: inherit;
-        position: relative;
-        user-select: none;
-        cursor: default;
-        list-style: none;
-        width: 100%;
-        padding: 5px 12px;
-    }
-
-    &[open] summary::after{
-        content: "\00229b";
-    }
-
-    & summary::after {
-        content: "\00229a";
-        display: block;
-        font-size: 1.75em;
-        color: @blanc;
-        position: absolute;
-        padding: 0 5px;
-        top: calc(50%);
-        right: 0;
-        transform: translateY(-50%);
-    }
-
-    & article.femmeHomme {
-        position: absolute;
-        background: @bodyFond;
-        width: 100%;
-        border: 2px solid @blanc;
-        border-radius: 4px;
-        margin: .75em 0 0 0;
-
-        display: flex;
-        flex-direction: column;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
 	transition: all 0.250s ease-out;
-	
+
 	section {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
+	    display: flex;
+	    flex-direction: row;
+	    justify-content: space-between;
+	    align-items: center;
 	    margin: 0 0.5em;
-	    
+
 	    input[type="checkbox"]{
 		appearance:none;
 		-webkit-appearance: none;
 		-moz-appearance:none;
-		
+
 		flex-shrink: 0;
-		
+
 		position: relative;
 		width:calc(@taille*@ratioTaille);
 		height:calc(@taille*@ratioTaille);
 		outline:none;
 		color: @noir;
-		border-radius: 4px;//@bordureRayon;
-		//border: @bordure solid inherit;
-		border:2px solid @gris;//@noir;
+		border-radius: 4px;
+		border:2px solid @gris;
 		background-color: lighten(@gris,35%);
 		cursor: pointer;
-		
+
 		& + label {
 		    flex-shrink:0;
 		    font-size:inherit;
@@ -562,10 +364,10 @@ details.genres {
 	    input[type="checkbox"]:checked{
 		border-color: @blanc;
 		background-color: inherit;
-		
+
 		& + label {
 		    color: @blanc;
-		    text-shadow: @ombreTexte;
+		    text-shadow: @texteOmbre;
 		}
 	    }
 
@@ -582,17 +384,162 @@ details.genres {
 	    }
 	}
     }
+
+}
+
+details.selecteur {
+    display: inline-block;
+    position: relative;
+    height: @hauteurElement;
+    line-height: 2;
+
+    font-size:100%;
+    color: @blanc;
+    background-color: @bodyFond;
+    border-radius: 6px;
+    border: 2px solid @blanc; 
+
+    padding:0;
+    margin:0;
+    box-shadow: @boiteOmbre;
+    cursor: pointer;
+
+    min-width: 14em;
+
+    & summary::-webkit-details-marker {
+	display:none;
+    }
+
+    &[open] > summary::after {
+	content: @ouvert;
+    }
+
+    & > summary::after {
+	content: @ferme;
+	font-size: 1.75em;
+	color: @blanc;
+	padding: 0 5px;
+	position:absolute;
+	top: calc(50%);
+	right: 0;
+	transform: translateY(-50%);
+    }
+
+
+    &[open] {
+    }
+
+    & > summary {
+	cursor: pointer;
+	padding:5px 12px;
+	list-style: none;
+	border-radius: 4px;
+    }
+
+    & > summary.inactif span {
+	color: @blanc;
+	background-color: inherit;
+    }
+
+    & > summary.inactif {
+	color: @blanc;
+	background-color: @bodyFond;
+    }
+
+    & > summary.actif {
+	color: @bodyFond;
+	border-color: @noir;
+	border: 1px solid @noir;
+	background-color: @blanc;
+	
+	span {
+	    color: @noir;
+	}
+	
+	&::after {
+	    color: @noir;
+	}
+    }
+
+    & .cadreSelecteur {
+	position: absolute;
+	width: 100%;
+	padding: 0 10px 10px 10px;
+	margin: 0;
+	margin-top:1em;
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+
+	box-shadow: @boiteOmbre;
+	max-height: 90vh;
+	overflow-y: scroll;
+	background-color: @bodyFond;
+
+	details {
+	    display: inline-block;
+	    background-color: inherit;
+	    border-radius: 4px;
+	    cursor: default;
+	    box-shadow: @boiteOmbre;
+	}
+
+	details + details {
+	    margin-top:10px;
+	}
+
+	summary::-webkit-details-marker {
+	    display:none;
+	}
+
+	summary {
+	    text-align: center;
+	    border:2px double @blanc;
+	    border-radius: 4px;
+	    background-color: lighten(@bodyFond, 3%);
+	}
+
+
+	article {
+	    display:flex;
+	    justify-content:center;
+	    align-items:center;
+	    border-radius: 4px;
+	    margin: .25em 0;
+	    background-color: @bodyFond;
+	}
+
+	ul {
+	    display: inline-block;
+
+	    background-color: inherit;
+	    list-style-type:  none;
+	    padding: .5em 0;
+	    margin:0;
+	}
+
+	ul > li {
+	    font-size: 0.9em;
+	    line-height:1.5;
+	    color: @noir;
+	    margin:0;
+	    padding: 0 10px;
+	    border-radius: 3px;
+	    height:100%;
+	    transition: all 0.15s ease-out;
+	}
+
+	li:hover {
+	    color:@blanc;
+	    background-color: @clairSature;
+	    text-align:center;
+	    height:100%;
+	    cursor: pointer;
+	}
+    }
 }
 
 
-button#enregistrer {
-    margin-left: auto ;
-}
-
-button#enregistrer:disabled,
-button#enregistrer[disabled] {
-    background-color: @desactivee;
-}
 
 .trombinoscope {
     display:grid;
@@ -636,68 +583,68 @@ article.musicien {
     border-radius:8px;
 
     img {
-        display:block;
-        width:100%;
-        height:auto;
-        padding:0;
-        margin:0;
-        box-shadow: -1px 0px 0px rgba(0,0,0,0.2);
-        flex: 0 0 auto;
+	display:block;
+	width:100%;
+	height:auto;
+	padding:0;
+	margin:0;
+	box-shadow: -1px 0px 0px rgba(0,0,0,0.2);
+	flex: 0 0 auto;
     }
 
     h1 {
-        font-size:1em;
-        font-family: @articleH1FontFamily;
-        margin:0;
-        padding:0.75em 0;
-        color: @articleH1Couleur;
-        text-align:center;    
-        line-height:@articleH1LineHeight;
-        border-radius-top-left:5px;
-        border-radius-top-right:5px;
+	font-size:1em;
+	font-family: @articleH1FontFamily;
+	margin:0;
+	padding:0.75em 0;
+	color: @articleH1Couleur;
+	text-align:center;    
+	line-height:@articleH1LineHeight;
+	border-radius-top-left:5px;
+	border-radius-top-right:5px;
     }
 
     h1.couleurHomme {
-        background-color: @gizon;
+	background-color: @gizon;
     }
 
     h1.couleurFemme {
-        background-color: @emakume;
+	background-color: @emakume;
     }
 
     p {
-        text-align:left;
-        margin-left:10px;
-        flex:1;
-        line-height:2;
+	text-align:left;
+	margin-left:10px;
+	flex:1;
+	line-height:2;
     }
 
     ul {
-        list-style:none;
-        margin: 0 1em;
-        padding:0;
+	list-style:none;
+	margin: 0 1em;
+	padding:0;
     }
 
     li {
-        font-family:@articleLiFontFamily;
-        font-size:@articleLiFontSize;
-        padding:10px 10px;
-        margin:10px 10px;
-        background-color:@articleLiFond;
-        border-radius:@articleLiBordureRayon;
-        border:@articleLiBordureLargeur solid @articleLiBordureCouleur;
-        text-align:right;
-        position:relative;
+	font-family:@articleLiFontFamily;
+	font-size:@articleLiFontSize;
+	padding:10px 10px;
+	margin:10px 10px;
+	background-color:@articleLiFond;
+	border-radius:@articleLiBordureRayon;
+	border:@articleLiBordureLargeur solid @articleLiBordureCouleur;
+	text-align:right;
+	position:relative;
     }
 
     li.courrielSimple, li.villeSimple{
-        font-size:0.8em;
-        text-align:center;
+	font-size:0.8em;
+	text-align:center;
     }
 
     li.libelle {
-        font-size:1em;
-        text-align:center;
+	font-size:1em;
+	text-align:center;
     }
 
     li.age::before,
@@ -707,36 +654,36 @@ article.musicien {
     li.ville::before,
     li.nationalite::before,
     li.courriel::before {
-        position:absolute;
-        top: 0.75em;
-        left: 0.5em;
-        text-align:left;
-        font-size:inherit;
-        font-family:inherit;
-        color: @articleLiBeforeCouleur;
+	position:absolute;
+	top: 0.75em;
+	left: 0.5em;
+	text-align:left;
+	font-size:inherit;
+	font-family:inherit;
+	color: @articleLiBeforeCouleur;
     }
 
     li.age::before {
-        content: "Age";
+	content: "Age";
     }
 
     li.anciennete::before {
-        content: "Anc.";
+	content: "Anc.";
     }
 
     li.telephone::before {
-        content: "Tél.";
+	content: "Tél.";
     }
 
     li.portable::before {
-        content: "Port.";
+	content: "Port.";
     }
 
     li.ville::before {
-        content: "Ville";
+	content: "Ville";
     }
 
     li.nationalite::before {
-        content: "Nat.";
+	content: "Nat.";
     }
 }

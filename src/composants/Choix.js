@@ -36,11 +36,13 @@ class Choix extends React.Component {
             let groupe = x.groupe;
             let items = x.items;
             let retour = (
-                <details className="detailsGroupe"key={groupe.toLowerCase()}>
-                <summary className="choix">{groupe}</summary>
+                <details className="detailsGroupe" key={groupe.toLowerCase()}>
+              <summary className="fonction">{groupe}</summary>
+	      <article>
                 <ul>
                 {items.map(this.creationItem)}
-                </ul>
+              </ul>
+	      </article>
                 </details>
             );
             return retour;

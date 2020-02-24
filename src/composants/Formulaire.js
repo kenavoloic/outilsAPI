@@ -123,37 +123,36 @@ class Formulaire extends React.Component {
         const requetePossible = abbreviation && libelle && nombrePostulants && seed;
         const sauvegardePossible = liste.length > 0;
 
-        return (
-            <nav className="barre">
+      return (
+          <>
+          <form className="enteteFormulaire" onSubmit={this.obtenirDonnees} className={this.props.nomClasse}>
 
-            <form className="enteteFormulaire" onSubmit={this.obtenirDonnees} className={this.props.nomClasse}>
+          <Choix data={listeOrchestrale} name="instrument" actualisation={this.changementInstrument} required />
 
-            <Choix data={listeOrchestrale} name="instrument" actualisation={this.changementInstrument} required />
+          <div className="labelInput">
+          <label htmlFor="nombre">Nombre</label>
+          <input name="nombrePostulants" type="number" min="1" max="100"  size="6" placeholder="Nombre" onChange={this.changement} value={this.state.nombrePostulants} required />
+          </div>
 
-            <div className="labelInput">
-            <label htmlFor="nombre">Nombre</label>
-            <input name="nombrePostulants" type="number" min="1" max="100"  size="6" placeholder="Nombre" onChange={this.changement} value={this.state.nombrePostulants} required />
-            </div>
-
-            <div className="labelInput">
-            <label htmlFor="seed">Seed</label>
-            <input name="seed" type="text" minLength="1" maxLength="32" placeholder="seed" onChange={this.changement} value={this.state.seed} required />
-            </div>
+          <div className="labelInput">
+          <label htmlFor="seed">Aléa</label>
+          <input name="seed" type="text" minLength="1" maxLength="32" placeholder="seed" onChange={this.changement} value={this.state.seed} required />
+          </div>
 
           <ChoixNationalites
-	  //data={this.state.toutes}
-	  data={this.state.listePays}
-	  listes={this.state.toutes}
-	  fonction={this.requeteNationalites} required/>
+          //data={this.state.toutes}
+          data={this.state.listePays}
+          listes={this.state.toutes}
+          fonction={this.requeteNationalites} />
 
           <Genres fonction={this.requeteGenres} />
-          
+
           <button type="submit" disabled={!requetePossible}>Envoi</button>
 
           </form>
 
           <button id="enregistrer" onClick={this.sauvegarderJson} disabled={!sauvegardePossible}>Sauver</button>
-          </nav>
+          </>
         );
     }
 

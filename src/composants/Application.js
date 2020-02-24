@@ -39,8 +39,8 @@ class Application extends Component {
     render(){
         return (
             <React.Fragment>
-            <header className="entete">
-            <Formulaire nomClasse="enteteFormulaire" canalEnfantParent={this.communicationFormulaireApplication}/>
+          <header className="entete">
+          <Formulaire nomClasse="enteteFormulaire" canalEnfantParent={this.communicationFormulaireApplication}/>
             </header>
             {this.state.liste ? <Trombinoscope data={this.state.liste} abbreviation={this.state.abbreviation} libelle={this.state.libelle} nomClasse="trombinoscope" /> : null} 
             </React.Fragment>

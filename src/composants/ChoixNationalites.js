@@ -55,8 +55,10 @@ class ChoixNationalites extends React.Component {
         return (
             <details className="pays" key="pays">
           <summary key="sommaire">Nationalités</summary>
-            <article className="nations" key="nations">
-            {this.boitesAcocher(this.state.liste, this.changementBoite)}
+          <article className="nations" key="nations">
+
+          {this.boitesAcocher(this.state.liste, this.changementBoite)}
+
             </article>
             </details>
         );
