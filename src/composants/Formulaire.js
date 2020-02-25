@@ -32,7 +32,7 @@ class Formulaire extends React.Component {
             genres: 'gender=female,male',
             champsExclus: 'exc=login,registered',
             boutonSauvegarde:false,
-          listePays: new ListePays().getListeEU(),
+          listePays: new ListePays().getListeFr(),
 	  toutes: new ListePays().toutes()
         }
     }

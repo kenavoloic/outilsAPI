@@ -9,43 +9,43 @@ import Trombinoscope from './Trombinoscope';
 
 class Application extends Component {
 
-    constructor(props){
-        super(props);
+  constructor(props){
+    super(props);
 
-        this.state = {
-            liste: null,
-            abbreviation: '',
-            libelle: '',
-            nombre: null
-        
-        }
+    this.state = {
+      liste: null,
+      abbreviation: '',
+      libelle: '',
+      nombre: null
+      
     }
+  }
 
-    componentDidMount = () => {}
+  componentDidMount = () => {}
 
-    componentDidUpdate = () => {}
+  componentDidUpdate = () => {}
 
-    componentDidCatch = (erreur, info) => {
-        console.log(erreur);
-        console.log(info);
+  componentDidCatch = (erreur, info) => {
+    console.log(erreur);
+    console.log(info);
+  }
+
+  communicationFormulaireApplication = (donnees, abbreviation, libelle)  => {
+    if(donnees){
+      this.setState({liste: donnees, abbreviation: abbreviation, libelle: libelle, nombre: donnees.length});
     }
+  }
 
-    communicationFormulaireApplication = (donnees, abbreviation, libelle)  => {
-        if(donnees){
-            this.setState({liste: donnees, abbreviation: abbreviation, libelle: libelle, nombre: donnees.length});
-        }
-    }
-
-    render(){
-        return (
-            <React.Fragment>
-          <header className="entete">
-          <Formulaire nomClasse="enteteFormulaire" canalEnfantParent={this.communicationFormulaireApplication}/>
-            </header>
-            {this.state.liste ? <Trombinoscope data={this.state.liste} abbreviation={this.state.abbreviation} libelle={this.state.libelle} nomClasse="trombinoscope" /> : null} 
-            </React.Fragment>
-        );
-    }
+  render(){
+    return (
+      <React.Fragment>
+      <header className="entete">
+      <Formulaire nomClasse="enteteFormulaire" canalEnfantParent={this.communicationFormulaireApplication}/>
+      </header>
+      {this.state.liste ? <Trombinoscope data={this.state.liste} abbreviation={this.state.abbreviation} libelle={this.state.libelle} nomClasse="trombinoscope" /> : null} 
+      </React.Fragment>
+    );
+  }
 
 }
 
