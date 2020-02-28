@@ -28,7 +28,7 @@ class Formulaire extends React.Component {
             liste: [],
             erreur: '',
             url: 'https://randomuser.me/api/?',
-            nationalites: 'nat=de,es,fr,ie,nl',
+            nationalites: 'nat=fr',
             genres: 'gender=female,male',
             champsExclus: 'exc=login,registered',
             boutonSauvegarde:false,
